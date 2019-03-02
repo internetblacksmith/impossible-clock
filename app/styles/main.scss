@@ -1,0 +1,204 @@
+body {
+  margin: 48px;
+  background: #fff;
+}
+
+.clear {
+  clear: both;
+}
+
+.display-container {
+  &.display-size-12 {
+    margin-bottom: 24px;
+  }
+  position: relative;
+  margin-right: 24px;
+  float: left;
+  div {
+    &.segment-x,
+    &.segment-y {
+      position: absolute;
+    }
+  }
+  span.segment-border {
+    display: block;
+    position: absolute;
+  }
+  &.display-size-12 {
+    width: 122px;
+    height: 220px;
+    .segment-x {
+      width: 72px;
+      left: 13px;
+      border-bottom-width: 12px;
+      border-bottom-style: solid;
+      // border-bottom-color: #000;
+      border-left-width: 12px;
+      border-left-style: solid;
+      border-left-color: transparent;
+      border-right-width: 12px;
+      border-right-style: solid;
+      border-right-color: transparent;
+      .segment-border {
+        top: 12px;
+        left: -12px;
+        right: -12px;
+        border-top-width: 12px;
+        border-top-style: solid;
+        // border-top-color: #000;
+        border-left-width: 12px;
+        border-left-style: solid;
+        border-left-color: transparent;
+        border-right-width: 12px;
+        border-right-style: solid;
+        border-right-color: transparent;
+      }
+    }
+    .segment-y {
+      height: 72px;
+      width: 0;
+      border-right-width: 12px;
+      border-right-style: solid;
+      // border-right-color: #000;
+      border-top-width: 12px;
+      border-top-style: solid;
+      border-top-color: transparent;
+      border-bottom-width: 12px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
+      .segment-border {
+        position: relative;
+        left: 12px;
+        height: 72px;
+        margin-top: -12px;
+        border-left-width: 12px;
+        border-left-style: solid;
+        // border-left-color: #000;
+        border-top-width: 12px;
+        border-top-style: solid;
+        border-top-color: transparent;
+        border-bottom-width: 12px;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+      }
+    }
+    .segment-1 {
+      top: 0;
+    }
+    .segment-2 {
+      top: 13px;
+      left: 98px;
+    }
+    .segment-3 {
+      top: 111px;
+      left: 98px;
+    }
+    .segment-4 {
+      top: 196px;
+    }
+    .segment-5 {
+      top: 111px;
+      left: 0px;
+    }
+    .segment-6 {
+      top: 13px;
+      left: 0px;
+    }
+    .segment-7 {
+      top: 98px;
+    }
+  }
+}
+
+/* clock */
+
+#display-2 {
+  margin-right: 60px;
+}
+
+#vertical-center {
+  position: absolute;
+  height: 0;
+  top: 50%;
+  left: 50%;
+}
+
+#clock-container {
+  margin-top: -110px;
+  margin-left: -220px;
+  width: 440px;
+  height: 220px;
+  .display-container:last-child {
+    margin: 0;
+  }
+  &:after {
+    display: block;
+    content: ".";
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+@function digit($digit, $segment) {
+
+  $array: [
+    [  "on",  "on",  "on",  "on",  "on",  "on", "off" ], // 0
+    [ "off",  "on",  "on", "off", "off", "off", "off" ], // 1
+    [  "on",  "on", "off",  "on",  "on", "off",  "on" ],
+    [  "on",  "on",  "on",  "on", "off", "off",  "on" ],
+    [ "off",  "on",  "on", "off", "off",  "on",  "on" ],
+    [  "on", "off",  "on",  "on", "off",  "on",  "on" ],
+    [  "on", "off",  "on",  "on",  "on",  "on",  "on" ],
+    [  "on",  "on",  "on", "off", "off", "off", "off" ],
+    [  "on",  "on",  "on",  "on",  "on",  "on",  "on" ],
+    [  "on",  "on",  "on", "off", "off",  "on",  "on" ]
+  ];
+
+  $digit_array: nth($array, $digit + 1);
+
+  @if ( nth($digit_array, $segment) == "on" ) {
+    @return 255;
+  } @else {
+    @return 0;
+  }
+}
+
+@function color($hour, $minute, $second, $segment){
+
+  $red:   digit($hour,   $segment);
+  $green: digit($minute, $segment);
+  $blue:  digit($second, $segment);
+
+  @return rgb($red, $green, $blue);;
+}
+
+@mixin segments($hour, $minute, $second, $segment) {
+
+  .display-no-#{$hour}-#{$minute}-#{$second}
+    .segment-#{nth($segment, 1)}.segment-#{nth($segment, 2)} {
+      @if (nth($segment, 1) == 'x') {
+        border-bottom-color: color($hour, $minute, $second, nth($segment, 2));
+      } @else {
+        border-right-color: color($hour, $minute, $second, nth($segment, 2));
+      }
+
+
+    .segment-border {
+      @if nth($segment, 1) == 'x' {
+        border-top-color: color($hour, $minute, $second, nth($segment, 2));
+      } @else {
+        border-left-color: color($hour, $minute, $second, nth($segment, 2));
+      }
+    }
+  }
+}
+
+@for $hour from 0 through 9 {
+  @for $minute from 0 through 9 {
+    @for $second from 0 through 9 {
+      @each $segment in [["x", 1], ["y", 2], ["y", 3], ["x", 4], ["y", 5], ["y", 6], ["x", 7]] {
+        @include segments($hour, $minute, $second, $segment);
+      }
+    }
+  }
+}
