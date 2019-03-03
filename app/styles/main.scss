@@ -151,7 +151,8 @@ body {
     [  "on", "off",  "on",  "on",  "on",  "on",  "on" ],
     [  "on",  "on",  "on", "off", "off", "off", "off" ],
     [  "on",  "on",  "on",  "on",  "on",  "on",  "on" ],
-    [  "on",  "on",  "on", "off", "off",  "on",  "on" ]
+    [  "on",  "on",  "on", "off", "off",  "on",  "on" ],
+    [ "off", "off", "off", "off", "off", "off", "off" ]
   ];
 
   $digit_array: nth($array, $digit + 1);
@@ -193,9 +194,9 @@ body {
   }
 }
 
-@for $hour from 0 through 9 {
-  @for $minute from 0 through 9 {
-    @for $second from 0 through 9 {
+@for $hour from 0 through 10 {
+  @for $minute from 0 through 10 {
+    @for $second from 0 through 10 {
       @each $segment in [["x", 1], ["y", 2], ["y", 3], ["x", 4], ["y", 5], ["y", 6], ["x", 7]] {
         @include segments($hour, $minute, $second, $segment);
       }
