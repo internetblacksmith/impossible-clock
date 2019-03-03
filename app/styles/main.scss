@@ -157,7 +157,7 @@ body {
   $digit_array: nth($array, $digit + 1);
 
   @if ( nth($digit_array, $segment) == "on" ) {
-    @return 255;
+    @return 200;
   } @else {
     @return 0;
   }
