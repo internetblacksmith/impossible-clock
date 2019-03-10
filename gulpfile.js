@@ -181,6 +181,7 @@ if (isDev) {
   serve = series(build, startDistServer);
 }
 
+exports.lint = lint;
 exports.serve = serve;
 exports.build = build;
 exports.default = build;
