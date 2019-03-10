@@ -13,10 +13,9 @@
 
 
   </head>
-  <body>
-    <!--[if IE]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+
+<body id="body">
+  <!--[if IE]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
     <div id="vertical-center">
       <div id="clock-container">
         <div id="display-1" class="display-container display-size-12 display-no-0-0-0">
@@ -40,9 +39,21 @@
       </div>
     </div>
 
-    <input type="checkbox" checked="checked" id="input-show-hour"><label for="input-show-hour">Show Hour</label>
-    <input type="checkbox" checked="checked" id="input-show-minute"><label for="input-show-minute">Show Minute</label>
-    <input type="checkbox" checked="checked" id="input-show-second"><label for="input-show-second">Show Second</label>
+  <label class="switch hour">
+    <input type="checkbox" checked="checked" id="input-show-hour">
+    <span class="slider round hour"></span>
+  </label>
+  <label for="input-show-hours">Hours</label>
+  <label class="switch minute">
+    <input type="checkbox" checked="checked" id="input-show-minute">
+    <span class="slider round minute"></span>
+  </label>
+  <label for="input-show-minute">Minute</label>
+  <label class="switch second">
+    <input type="checkbox" checked="checked" id="input-show-second">
+    <span class="slider round second"></span>
+  </label>
+  <label for="input-show-second">Seconds</label>
 
     <!-- build:js scripts/vendor.js -->
 
