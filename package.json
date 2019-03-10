@@ -1,10 +1,11 @@
 {
   "private": true,
   "engines": {
-    "node": ">=4"
+    "node": "11.10.1",
+    "npm": "6.7.0"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "main": "index.js",
+  "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "autoprefixer": "^9.4.4",
@@ -13,6 +14,7 @@
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.7",
     "del": "^3.0.0",
+    "express": "^4.16.4",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.0.1",
@@ -29,16 +31,20 @@
     "gulp-sourcemaps": "^2.2.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^3.0.0",
+    "helmet": "^3.15.1",
+    "helmet-csp": "^2.7.1",
     "mocha": "^5.2.0",
+    "nocache": "^2.0.0",
     "yargs": "12.0.5"
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
     "serve:dist": "cross-env NODE_ENV=production gulp serve",
     "start": "gulp serve",
-    "build": "cross-env NODE_ENV=production gulp",
+    "build": "cross-env NODE_ENV=production gulp build",
     "test": "npm run serve:test",
-    "tasks": "gulp --tasks"
+    "tasks": "gulp --tasks",
+    "heroku-postbuild": "gulp build"
   },
   "browserslist": [
     "> 1%",
@@ -55,10 +61,11 @@
       "browser": true
     },
     "rules": {
-      "quotes": [
-        2,
-        "single"
+      "indent": [
+        "error",
+        2
       ]
     }
-  }
+  },
+  "heroku-run-build-script": true
 }

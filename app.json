@@ -1,0 +1,10 @@
+{
+  "name": "Impossible clock",
+  "description": "A clock",
+  "repository": "https://github.com/jabawack81/impossible-clock/",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs",
+  "scripts": {
+    "postdeploy": "gulp build"
+  }
+}
