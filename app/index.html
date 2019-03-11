@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>impossible_clock</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
 
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>impossible_clock</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 
-  </head>
+</head>
 
 <body id="body">
   <!--[if IE]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
-    <div id="vertical-center">
+  <div class="container">
+    <div id="clock">
       <div id="clock-container">
         <div id="display-1" class="display-container display-size-12 display-no-0-0-0">
           <div class="segment-x segment-1"><span class="segment-border"></span></div>
@@ -38,29 +39,40 @@
         </div>
       </div>
     </div>
+    <div id="switch">
+      <div class="single-switch" id="switch-hour">
+        <label class="switch hour">
+          <input type="checkbox" checked="checked" id="input-show-hour">
+          <span class="slider round hour"></span>
+        </label>
+        <label for="input-show-hours">Hours</label>
+      </div>
+      <div class="single-switch" id="switch-minute">
+        <label class="switch minute">
+          <input type="checkbox" checked="checked" id="input-show-minute">
+          <span class="slider round minute"></span>
+        </label>
+        <label for="input-show-minute">Minute</label>
+      </div>
+      <div class="single-switch" id="switch-second">
+        <label class="switch second">
+          <input type="checkbox" checked="checked" id="input-show-second">
+          <span class="slider round second"></span>
+        </label>
+        <label for="input-show-second">Seconds</label>
+      </div>
+    </div>
+  </div>
+  <!--
 
-  <label class="switch hour">
-    <input type="checkbox" checked="checked" id="input-show-hour">
-    <span class="slider round hour"></span>
-  </label>
-  <label for="input-show-hours">Hours</label>
-  <label class="switch minute">
-    <input type="checkbox" checked="checked" id="input-show-minute">
-    <span class="slider round minute"></span>
-  </label>
-  <label for="input-show-minute">Minute</label>
-  <label class="switch second">
-    <input type="checkbox" checked="checked" id="input-show-second">
-    <span class="slider round second"></span>
-  </label>
-  <label for="input-show-second">Seconds</label>
+   -->
 
-    <!-- build:js scripts/vendor.js -->
+  <!-- build:js scripts/vendor.js -->
 
+  <!-- endbuild -->
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+</body>
 
-    <!-- endbuild -->
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-  </body>
 </html>
