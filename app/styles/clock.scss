@@ -1,0 +1,87 @@
+/* Clock */
+
+#display-1 {
+  margin-right: 24px;
+}
+
+@function digit($digit, $segment) {
+
+  $array: [
+    [  "on",  "on",  "on",  "on",  "on",  "on", "off" ], // 0
+    [ "off",  "on",  "on", "off", "off", "off", "off" ], // 1
+    [  "on",  "on", "off",  "on",  "on", "off",  "on" ], // 2
+    [  "on",  "on",  "on",  "on", "off", "off",  "on" ], // 3
+    [ "off",  "on",  "on", "off", "off",  "on",  "on" ], // 4
+    [  "on", "off",  "on",  "on", "off",  "on",  "on" ], // 5
+    [  "on", "off",  "on",  "on",  "on",  "on",  "on" ], // 6
+    [  "on",  "on",  "on", "off", "off", "off", "off" ], // 7
+    [  "on",  "on",  "on",  "on",  "on",  "on",  "on" ], // 8
+    [  "on",  "on",  "on", "off", "off",  "on",  "on" ], // 9
+    [ "off", "off", "off", "off", "off", "off", "off" ]  // 10
+  ];
+
+  $digit_array: nth($array, $digit + 1);
+
+  @if ( nth($digit_array, $segment) == "on" ) {
+    @return 255;
+  } @else {
+    @return 0;
+  }
+}
+
+@function color($hour, $minute, $second, $segment){
+
+  $red:   digit($hour,   $segment);
+  $green: digit($minute, $segment);
+  $blue:  digit($second, $segment);
+
+  @return rgb($red, $green, $blue);
+}
+
+@mixin segments($hour, $minute, $second, $segment) {
+  .display-no-#{$hour}-#{$minute}-#{$second}
+    .segment-#{nth($segment, 1)}.segment-#{nth($segment, 2)} {
+      @if (nth($segment, 1) == 'x') {
+        border-bottom-color: color($hour, $minute, $second, nth($segment, 2));
+      } @else {
+        border-right-color: color($hour, $minute, $second, nth($segment, 2));
+      }
+
+
+    .segment-border {
+      @if nth($segment, 1) == 'x' {
+        border-top-color: color($hour, $minute, $second, nth($segment, 2));
+      } @else {
+        border-left-color: color($hour, $minute, $second, nth($segment, 2));
+      }
+    }
+  }
+}
+
+@for $hour from 0 through 10 {
+  @for $minute from 0 through 10 {
+    @for $second from 0 through 10 {
+      @each $segment in [["x", 1], ["y", 2], ["y", 3], ["x", 4], ["y", 5], ["y", 6], ["x", 7]] {
+        @include segments($hour, $minute, $second, $segment);
+      }
+    }
+  }
+}
+
+@function bodybackgroundcolor($color){
+  @if ($color == "on"){
+    @return 50;
+  } @else {
+    @return 200;
+  }
+}
+
+@each $hour in ["on", "off"] {
+  @each $minute in ["on", "off"] {
+    @each $second in ["on", "off"] {
+      .body-#{$hour}-#{$minute}-#{$second} {
+        background-color: rgb(bodybackgroundcolor($hour),bodybackgroundcolor($minute),bodybackgroundcolor($second),);
+      }
+    }
+  }
+}
