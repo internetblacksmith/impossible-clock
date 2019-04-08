@@ -1,9 +1,4 @@
 /* Clock */
-
-#display-1 {
-  margin-right: 24px;
-}
-
 @function digit($digit, $segment) {
 
   $array: [
@@ -40,28 +35,15 @@
 
 @mixin segments($hour, $minute, $second, $segment) {
   .display-no-#{$hour}-#{$minute}-#{$second}
-    .segment-#{nth($segment, 1)}.segment-#{nth($segment, 2)} {
-      @if (nth($segment, 1) == 'x') {
-        border-bottom-color: color($hour, $minute, $second, nth($segment, 2));
-      } @else {
-        border-right-color: color($hour, $minute, $second, nth($segment, 2));
-      }
-
-
-    .segment-border {
-      @if nth($segment, 1) == 'x' {
-        border-top-color: color($hour, $minute, $second, nth($segment, 2));
-      } @else {
-        border-left-color: color($hour, $minute, $second, nth($segment, 2));
-      }
-    }
+    .segment-#{$segment} {
+      fill: color($hour, $minute, $second, $segment);
   }
 }
 
 @for $hour from 0 through 10 {
   @for $minute from 0 through 10 {
     @for $second from 0 through 10 {
-      @each $segment in [["x", 1], ["y", 2], ["y", 3], ["x", 4], ["y", 5], ["y", 6], ["x", 7]] {
+      @each $segment in [1,2,3,4,5,6,7] {
         @include segments($hour, $minute, $second, $segment);
       }
     }
