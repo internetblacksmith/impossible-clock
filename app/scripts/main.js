@@ -2,7 +2,7 @@ var display1 = document.getElementById("display-1");
 var display2 = document.getElementById("display-2");
 var body = document.getElementById("body")
 
-var digitBaseClass = "display-container display-size-12 display-no-";
+var digitBaseClass = "display-no-";
 var bodyBaseClass = "body-"
 
 function zeroFill(string, length) {
@@ -58,8 +58,8 @@ function bodyBackGround(id){
 
 function setdisplays() {
   var d = new Date();
-  display1.className = digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
-  display2.className = digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
+  display1.className.baseVal = digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
+  display2.className.baseVal = digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
   var bodyClass = bodyBaseClass + bodyBackGround("input-show-hour") + "-" + bodyBackGround("input-show-minute") + "-" + bodyBackGround("input-show-second");
   body.className = bodyClass;
 }

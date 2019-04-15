@@ -1,78 +1,80 @@
 <!doctype html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>impossible_clock</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body id="body">
-    <!--[if IE]>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>impossible_clock</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+
+<body id="body">
+  <!--[if IE]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="container">
-      <div id="clock">
-        <div id="clock-container">
-          <div id="display-1" class="display-container display-size-12 display-no-0-0-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 12 20">
-              <path  d="M 2.0527344,0.125 H 7.9492188 L 8.8242188,1 7.9472656,1.875 H 2.0527344 L 1.1757812,1 Z"     class="segment-1" />
-              <path  d="M 9,1.1757812 9.875,2.0527344 V 7.9492188 L 9,8.8242188 8.125,7.9472656 V 2.0527344 Z"       class="segment-2" />
-              <path  d="m 9,9.1757812 0.875,0.8769528 v 5.896485 L 9,16.824219 8.125,15.947266 v -5.894532 z"        class="segment-3" />
-              <path  d="M 2.0527344,16.125 H 7.9472656 L 8.8242188,17 7.9472656,17.875 H 2.0507812 L 1.1757812,17 Z" class="segment-4" />
-              <path  d="m 1,9.1757812 0.875,0.8769528 v 5.894532 L 1,16.824219 0.125,15.947266 v -5.896485 z"        class="segment-5" />
-              <path  d="M 1,1.1757812 1.875,2.0527344 V 7.9472656 L 1,8.8242188 0.125,7.9472656 V 2.0507812 Z"       class="segment-6" />
-              <path  d="M 2.0527344,8.125 H 7.9492188 L 8.8242188,9 7.9472656,9.875 H 2.0527344 L 1.1757812,9 Z"     class="segment-7" />
-            </svg>
-          </div>
-          <div id="display-2" class="display-container display-size-12 display-no-0-0-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 12 20">
-              <path  d="M 2.0527344,0.125 H 7.9492188 L 8.8242188,1 7.9472656,1.875 H 2.0527344 L 1.1757812,1 Z"     class="segment-1" />
-              <path  d="M 9,1.1757812 9.875,2.0527344 V 7.9492188 L 9,8.8242188 8.125,7.9472656 V 2.0527344 Z"       class="segment-2" />
-              <path  d="m 9,9.1757812 0.875,0.8769528 v 5.896485 L 9,16.824219 8.125,15.947266 v -5.894532 z"        class="segment-3" />
-              <path  d="M 2.0527344,16.125 H 7.9472656 L 8.8242188,17 7.9472656,17.875 H 2.0507812 L 1.1757812,17 Z" class="segment-4" />
-              <path  d="m 1,9.1757812 0.875,0.8769528 v 5.894532 L 1,16.824219 0.125,15.947266 v -5.896485 z"        class="segment-5" />
-              <path  d="M 1,1.1757812 1.875,2.0527344 V 7.9472656 L 1,8.8242188 0.125,7.9472656 V 2.0507812 Z"       class="segment-6" />
-              <path  d="M 2.0527344,8.125 H 7.9492188 L 8.8242188,9 7.9472656,9.875 H 2.0527344 L 1.1757812,9 Z"     class="segment-7" />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div id="switch">
-        <div class="single-switch" id="switch-hour">
-          <label class="switch hour">
-            <input type="checkbox" checked="checked" id="input-show-hour">
-            <span class="slider round hour"></span>
-          </label>
-          <label for="input-show-hours">H</label>
-        </div>
-        <div class="single-switch" id="switch-minute">
-          <label class="switch minute">
-            <input type="checkbox" checked="checked" id="input-show-minute">
-            <span class="slider round minute"></span>
-          </label>
-          <label for="input-show-minute">M</label>
-        </div>
-        <div class="single-switch" id="switch-second">
-          <label class="switch second">
-            <input type="checkbox" checked="checked" id="input-show-second">
-            <span class="slider round second"></span>
-          </label>
-          <label for="input-show-second">S</label>
-        </div>
+  <div class="container">
+    <div id="clock">
+      <div id="clock-container">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <svg width="330" height="284" viewBox="-1 -1 20.625 17.75">
+          <g id="display-1" class="display-no-0-0-0">
+            <path id="display-1-segment-1" class="segment-1" d="m 0.9277344,-1 h 5.8964844 l 0.875,0.875 L 6.8222656,0.75 H 0.9277344 L 0.0507812,-0.125 Z" />
+            <path id="display-1-segment-2" class="segment-2" d="M 7.875,0.0507812 8.75,0.9277344 v 5.8964844 l -0.875,0.875 L 7,6.8222656 V 0.9277344 Z" />
+            <path id="display-1-segment-3" class="segment-3" d="M 7.875,8.0507812 8.75,8.927734 v 5.896485 l -0.875,0.875 L 7,14.822266 V 8.927734 Z" />
+            <path id="display-1-segment-4" class="segment-4" d="M 0.9277344,15 H 6.8222656 L 7.6992188,15.875 6.8222656,16.75 H 0.9257812 l -0.875,-0.875 z" />
+            <path id="display-1-segment-5" class="segment-5" d="M -0.125,8.0507812 0.75,8.927734 v 5.894532 L -0.125,15.699219 -1,14.822266 V 8.925781 Z" />
+            <path id="display-1-segment-6" class="segment-6" d="M -0.125,0.0507812 0.75,0.9277344 V 6.8222656 L -0.125,7.6992188 -1,6.8222656 V 0.9257812 Z" />
+            <path id="display-1-segment-7" class="segment-7" d="m 0.9277344,7 h 5.8964844 l 0.875,0.875 L 6.8222656,8.75 H 0.9277344 L 0.0507812,7.875 Z" />
+          </g>
+          <g id="display-2" class="display-no-0-0-0">
+            <path id="display-2-segment-1" class="segment-1" d="m 11.802734,-1 h 5.896485 l 0.875,0.875 -0.876953,0.875 h -5.894532 l -0.876953,-0.875 z" />
+            <path id="display-2-segment-2" class="segment-2" d="m 18.75,0.0507812 0.875,0.8769532 v 5.8964844 l -0.875,0.875 -0.875,-0.8769532 V 0.9277344 Z" />
+            <path id="display-2-segment-3" class="segment-3" d="m 18.75,8.0507812 0.875,0.8769528 v 5.896485 l -0.875,0.875 -0.875,-0.876953 V 8.927734 Z" />
+            <path id="display-2-segment-4" class="segment-4" d="m 11.802734,15 h 5.894532 l 0.876953,0.875 -0.876953,0.875 h -5.896485 l -0.875,-0.875 z" />
+            <path id="display-2-segment-5" class="segment-5" d="m 10.75,8.0507812 0.875,0.8769528 v 5.894532 L 10.75,15.699219 9.875,14.822266 V 8.925781 Z" />
+            <path id="display-2-segment-6" class="segment-6" d="m 10.75,0.0507812 0.875,0.8769532 V 6.8222656 L 10.75,7.6992188 9.875,6.8222656 V 0.9257812 Z" />
+            <path id="display-2-segment-7" class="segment-7" d="m 11.802734,7 h 5.896485 l 0.875,0.875 -0.876953,0.875 H 11.802734 L 10.925781,7.875 Z" />
+          </g>
+        </svg>
       </div>
     </div>
-    <!--
+    <div id="switch">
+      <div class="single-switch" id="switch-hour">
+        <label class="switch hour">
+          <input type="checkbox" checked="checked" id="input-show-hour">
+          <span class="slider round hour"></span>
+        </label>
+        <label for="input-show-hours">H</label>
+      </div>
+      <div class="single-switch" id="switch-minute">
+        <label class="switch minute">
+          <input type="checkbox" checked="checked" id="input-show-minute">
+          <span class="slider round minute"></span>
+        </label>
+        <label for="input-show-minute">M</label>
+      </div>
+      <div class="single-switch" id="switch-second">
+        <label class="switch second">
+          <input type="checkbox" checked="checked" id="input-show-second">
+          <span class="slider round second"></span>
+        </label>
+        <label for="input-show-second">S</label>
+      </div>
+    </div>
+  </div>
+  <!--
 
    -->
-    <!-- build:js scripts/vendor.js -->
-    <!-- endbuild -->
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-  </body>
+  <!-- build:js scripts/vendor.js -->
+  <!-- endbuild -->
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+</body>
+
 </html>
