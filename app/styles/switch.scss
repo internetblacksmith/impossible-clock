@@ -5,6 +5,9 @@
   background-color: white;
   padding: 5px;
   border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .switch {
@@ -17,7 +20,14 @@
     opacity: 0;
     width: 0;
     height: 0;
+    margin: 5px;
   }
+}
+
+.actual-label {
+  margin: 5px;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 1.2em;
 }
 
 .slider {

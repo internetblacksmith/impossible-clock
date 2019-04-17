@@ -16,7 +16,7 @@
     grid-row-end: 5;
 
     .single-switch {
-      display: inline-block;
+      display: inline-flex;
       margin-right: 24px;
       margin-bottom: 0;
 
@@ -26,6 +26,7 @@
     }
   }
 }
+
 @media only screen and (min-width:551px) {
   .container {
     grid-template-columns: 40px auto auto 40px;
