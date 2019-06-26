@@ -33,7 +33,7 @@
     "gulp-useref": "^3.0.0",
     "helmet": "^3.18.0",
     "helmet-csp": "^2.7.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "nocache": "^2.0.0",
     "yargs": "13.2.4"
   },
