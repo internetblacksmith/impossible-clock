@@ -1,9 +1,11 @@
 var display1 = document.getElementById("display-1");
 var display2 = document.getElementById("display-2");
-var body = document.getElementById("body")
+var body = document.getElementById("body");
+var githubLogo = document.getElementById("github-logo");
 
 var digitBaseClass = "display-no-";
-var bodyBaseClass = "body-"
+var bodyBaseClass = "body-";
+var githubLogoBaseClass = "github-logo-";
 
 function zeroFill(string, length) {
   for (var i = 0, l = length - string.length; i < l; i++) {
@@ -49,7 +51,7 @@ function sDigit(d, digit) {
   return "10";
 }
 
-function bodyBackGround(id){
+function inputStatus(id){
   if (isChecked(id)) {
     return "on";
   }
@@ -60,8 +62,9 @@ function setdisplays() {
   var d = new Date();
   display1.className.baseVal = digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
   display2.className.baseVal = digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
-  var bodyClass = bodyBaseClass + bodyBackGround("input-show-hour") + "-" + bodyBackGround("input-show-minute") + "-" + bodyBackGround("input-show-second");
-  body.className = bodyClass;
+  var statusClass = inputStatus("input-show-hour") + "-" + inputStatus("input-show-minute") + "-" + inputStatus("input-show-second");
+  body.className = bodyBaseClass + statusClass;
+  githubLogo.className = githubLogoBaseClass + statusClass;
 }
 setInterval(setdisplays, 1000);
 setdisplays();
