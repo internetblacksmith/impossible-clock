@@ -31,7 +31,7 @@
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-uglify": "^3.0.1",
-    "gulp-useref": "^4.0.0",
+    "gulp-useref": "^4.0.1",
     "helmet": "^3.21.2",
     "helmet-csp": "^2.9.4",
     "mocha": "^7.0.1",
