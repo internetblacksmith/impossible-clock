@@ -37,7 +37,7 @@
     "mocha": "^8.0.1",
     "nocache": "^2.0.0",
     "yargs": "15.3.1",
-    "snyk": "^1.339.1"
+    "snyk": "^1.339.3"
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
