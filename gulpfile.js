@@ -6,20 +6,25 @@ const del = require("del");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
 const { argv } = require("yargs");
-var realFavicon = require("gulp-real-favicon");
-var fs = require("fs");
+const realFavicon = require("gulp-real-favicon");
+const fs = require("fs");
 
 // File where the favicon markups are stored
-var FAVICON_DATA_FILE = "faviconData.json";
+const FAVICON_DATA_FILE = "faviconData.json";
 
 const $ = gulpLoadPlugins();
 const server = browserSync.create();
 
-const port = argv.port || 9000;
-
 const isProd = process.env.NODE_ENV === "production";
 const isTest = process.env.NODE_ENV === "test";
 const isDev = !isProd && !isTest;
+
+let port;
+if(isTest){
+  port = argv.port || 9005;
+} else {
+  port = argv.port || 9000;
+}
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,
@@ -123,7 +128,14 @@ function scripts() {
 
 const lintBase = files => {
   return src(files)
-    .pipe($.eslint({ fix: true }))
+    .pipe($.eslint({
+      fix: true,
+      rules: {
+        quotes: ["error", "double"],
+        indent: ["error", 2],
+        semi: ["error", "always"]
+      }
+    }))
     .pipe(server.reload({ stream: true, once: true }))
     .pipe($.eslint.format())
     .pipe($.if(!server.active, $.eslint.failAfterError()));
@@ -132,7 +144,7 @@ function lint() {
   return lintBase("app/scripts/**/*.js").pipe(dest("app/scripts"));
 }
 function lintTest() {
-  return lintBase("test/spec/**/*.js").pipe(dest("test/spec"));
+  return lintBase("cypress/**/**.spec.js").pipe(dest("cypress"));
 }
 
 function html() {
@@ -194,19 +206,7 @@ function measureSize() {
   return src("dist/**/*").pipe($.size({ title: "build", gzip: true }));
 }
 
-const build = series(
-  parallel(
-    lint,
-    series(parallel(styles, scripts), html),
-    generateFavicon,
-    images,
-    fonts,
-    extras,
-  ),
-  measureSize,
-);
-
-function startAppServer() {
+function startDevServer() {
   server.init({
     notify: false,
     port,
@@ -234,25 +234,7 @@ function startTestServer() {
     port,
     ui: false,
     server: {
-      baseDir: "test",
-      routes: {
-        "/scripts": ".tmp/scripts",
-        "/node_modules": "node_modules",
-      },
-    },
-  });
-
-  watch("app/scripts/**/*.js", scripts);
-  watch(["test/spec/**/*.js", "test/index.html"]).on("change", server.reload);
-  watch("test/spec/**/*.js", lintTest);
-}
-
-function startDistServer() {
-  server.init({
-    notify: false,
-    port,
-    server: {
-      baseDir: "dist",
+      baseDir: [".tmp", "app"],
       routes: {
         "/node_modules": "node_modules",
       },
@@ -262,13 +244,40 @@ function startDistServer() {
 
 let serve;
 if (isDev) {
-  serve = series(clean, parallel(styles, scripts, fonts), startAppServer);
+  serve = series(
+    clean, 
+    parallel(
+      styles, 
+      scripts, 
+      fonts
+    ),
+    startDevServer
+  );
 } else if (isTest) {
-  serve = series(scripts, startTestServer);
-} else if (isProd) {
-  serve = series(build, startDistServer);
+  serve = series(
+    clean,
+    parallel(
+      styles,
+      scripts,
+      fonts
+    ),
+    startTestServer
+  );
 }
 
+const build = series(
+  parallel(
+    lint,
+    series(parallel(styles, scripts), html),
+    generateFavicon,
+    images,
+    fonts,
+    extras,
+  ),
+  measureSize,
+);
+
+exports.lintTest = lintTest;
 exports.lint = lint;
 exports.serve = serve;
 exports.build = build;

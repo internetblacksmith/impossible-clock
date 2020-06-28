@@ -34,10 +34,12 @@
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
-    "serve:dist": "cross-env NODE_ENV=production gulp serve",
+    "serve:dev": "cross-env NODE_ENV=dev gulp serve",
+    "build:prod": "cross-env NODE_ENV=prod gulp build",
     "tasks": "gulp --tasks",
     "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "prepare": "yarn run snyk-protect",
+    "test": "yarn run serve:test & yarn run cypress run"
   },
   "browserslist": [
     "> 1%",
