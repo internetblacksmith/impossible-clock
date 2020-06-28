@@ -3,7 +3,7 @@
 // https://github.com/cypress-io/cypress/issues/6720
 
 context("Test", () => {
-  const url = "http://localhost:9005";
+  const url = "/";
   const now = new Date(Date.UTC(2017, 2, 14)).getTime();
 
   beforeEach(function(){

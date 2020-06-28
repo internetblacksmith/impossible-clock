@@ -1,6 +1,9 @@
 [build]
-  command = "gulp build"
+  command = "yarn run build:prod"
   publish = "dist"
+
+[[plugins]]
+  package = "netlify-plugin-cypress"
 
 [[headers]]
   for = "/*"
