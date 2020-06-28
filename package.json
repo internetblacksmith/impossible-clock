@@ -60,5 +60,8 @@
       ]
     }
   },
-  "snyk": true
+  "snyk": true,
+  "devDependencies": {
+    "cypress": "^4.9.0"
+  }
 }
