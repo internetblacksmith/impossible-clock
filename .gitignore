@@ -9,3 +9,7 @@ bower_components
 # System Files
 .DS_Store
 Thumbs.db
+
+# Cypress media files
+/cypress/videos
+/cypress/screenshots
