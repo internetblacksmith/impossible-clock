@@ -19,12 +19,7 @@ const isProd = process.env.NODE_ENV === "production";
 const isTest = process.env.NODE_ENV === "test";
 const isDev = !isProd && !isTest;
 
-let port;
-if(isTest){
-  port = argv.port || 9005;
-} else {
-  port = argv.port || 9000;
-}
+const port = argv.port || 9000;
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,
