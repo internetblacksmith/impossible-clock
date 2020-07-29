@@ -4,7 +4,4 @@ command:
 - prettier
 - "--write"
 arguments: []
-include:
-- "**/*.js"
-- "**/*.jsx"
 interpreters: []
