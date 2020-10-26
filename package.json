@@ -30,7 +30,7 @@
     "gulp-sourcemaps": "^2.2.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^4.0.1",
-    "snyk": "^1.415.0"
+    "snyk": "^1.420.1"
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
