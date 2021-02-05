@@ -7548,10 +7548,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-netlify-plugin-cypress@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/netlify-plugin-cypress/-/netlify-plugin-cypress-1.4.1.tgz#b57d6f093658ecfbcc0c94da6d1ab1c8340c55aa"
-  integrity sha512-sKMafNqG4oQIUKiNzcXFbIxwQggdlicq5ErdncB/I3Rphl6883XT1d4jxE2WmmkSKWsFwJ644T/HrF3i6Jj3iw==
+netlify-plugin-cypress@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-cypress/-/netlify-plugin-cypress-1.7.0.tgz#2f2d2342b375962fde0cf2858ac5c7af8e50e17c"
+  integrity sha512-pEAHhZzaklIilG24WA2gJVqxONjGMJK4WSR4kxoVfWkA8jMRCJSdwocF1CDA6AO1gBwsQqhNlI1SXWJ6tFDL6Q==
   dependencies:
     debug "4.1.1"
     got "10.7.0"
