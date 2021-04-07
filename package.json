@@ -11,7 +11,7 @@
     "autoprefixer": "^9.8.6",
     "browser-sync": "^2.26.14",
     "cross-env": "^7.0.3",
-    "cssnano": "^4.1.7",
+    "cssnano": "^4.1.11",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
