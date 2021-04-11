@@ -65,7 +65,7 @@
   },
   "snyk": true,
   "devDependencies": {
-    "cypress": "^6.6.0",
+    "cypress": "^7.0.1",
     "netlify-plugin-cypress": "^2.2.0"
   }
 }
