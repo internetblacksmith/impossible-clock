@@ -66,6 +66,7 @@
   "snyk": true,
   "devDependencies": {
     "cypress": "^7.0.1",
-    "netlify-plugin-cypress": "^2.2.0"
+    "netlify-plugin-cypress": "^2.2.0",
+    "prettier": "2.2.1"
   }
 }

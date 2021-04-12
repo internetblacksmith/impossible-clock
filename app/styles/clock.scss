@@ -1,68 +1,57 @@
 /* Clock */
 @function digit($digit, $segment) {
-
-  $array: [
-    [  "on",  "on",  "on",  "on",  "on",  "on", "off" ], // 0
-    [ "off",  "on",  "on", "off", "off", "off", "off" ], // 1
-    [  "on",  "on", "off",  "on",  "on", "off",  "on" ], // 2
-    [  "on",  "on",  "on",  "on", "off", "off",  "on" ], // 3
-    [ "off",  "on",  "on", "off", "off",  "on",  "on" ], // 4
-    [  "on", "off",  "on",  "on", "off",  "on",  "on" ], // 5
-    [  "on", "off",  "on",  "on",  "on",  "on",  "on" ], // 6
-    [  "on",  "on",  "on", "off", "off", "off", "off" ], // 7
-    [  "on",  "on",  "on",  "on",  "on",  "on",  "on" ], // 8
-    [  "on",  "on",  "on", "off", "off",  "on",  "on" ], // 9
-    [ "off", "off", "off", "off", "off", "off", "off" ]  // 10
-  ];
+  $array: [ [255, 255, 255, 255, 255, 255, 0], [0, 255, 255, 0, 0, 0, 0], [255,
+    255, 0, 255, 255, 0, 255], [255, 255, 255, 255, 0, 0, 255], [0, 255, 255, 0,
+    0, 255, 255], [255, 0, 255, 255, 0, 255, 255], [255, 0, 255, 255, 255, 255,
+    255], [255, 255, 255, 0, 0, 0, 0], [255, 255, 255, 255, 255, 255, 255], [255,
+    255, 255, 0, 0, 255, 255], [0, 0, 0, 0, 0, 0, 0] ];
 
   $digit_array: nth($array, $digit + 1);
-
-  @if ( nth($digit_array, $segment) == "on" ) {
-    @return 255;
-  } @else {
-    @return 0;
-  }
+  $element: nth($digit_array, $segment);
+  @return $element;
 }
 
-@function color($hour, $minute, $second, $segment){
-
-  $red:   digit($hour,   $segment);
+@function color($hour, $minute, $second, $segment) {
+  $red: digit($hour, $segment);
   $green: digit($minute, $segment);
-  $blue:  digit($second, $segment);
+  $blue: digit($second, $segment);
 
   @return rgb($red, $green, $blue);
 }
 
 @mixin segments($hour, $minute, $second, $segment) {
-  .display-no-#{$hour}-#{$minute}-#{$second}
-    .segment-#{$segment} {
-      fill: color($hour, $minute, $second, $segment);
+  .display-no-#{$hour}-#{$minute}-#{$second} .segment-#{$segment} {
+    fill: color($hour, $minute, $second, $segment);
   }
 }
 
 @for $hour from 0 through 10 {
   @for $minute from 0 through 10 {
     @for $second from 0 through 10 {
-      @each $segment in [1,2,3,4,5,6,7] {
+      @each $segment in [1, 2, 3, 4, 5, 6, 7] {
         @include segments($hour, $minute, $second, $segment);
       }
     }
   }
 }
 
-@function bodybackgroundcolor($color){
-  @if ($color == "on"){
+@function bodybackgroundcolor($color) {
+  @if ($color == "on") {
     @return 50;
   } @else {
     @return 200;
   }
 }
 
-@each $hour in ["on", "off"] {
-  @each $minute in ["on", "off"] {
-    @each $second in ["on", "off"] {
+@each $hour in [ "on", "off" ] {
+  @each $minute in [ "on", "off" ] {
+    @each $second in [ "on", "off" ] {
       .body-#{$hour}-#{$minute}-#{$second} {
-        background-color: rgb(bodybackgroundcolor($hour),bodybackgroundcolor($minute),bodybackgroundcolor($second),);
+        background-color: rgb(
+          bodybackgroundcolor($hour),
+          bodybackgroundcolor($minute),
+          bodybackgroundcolor($second)
+        );
       }
     }
   }

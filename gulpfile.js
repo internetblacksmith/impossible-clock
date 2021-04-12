@@ -86,7 +86,7 @@ function generateFavicon(done) {
       },
       markupFile: FAVICON_DATA_FILE,
     },
-    function() {
+    function () {
       done();
     },
   );
@@ -123,14 +123,16 @@ function scripts() {
 
 const lintBase = files => {
   return src(files)
-    .pipe($.eslint({
-      fix: true,
-      rules: {
-        quotes: ["error", "double"],
-        indent: ["error", 2],
-        semi: ["error", "always"]
-      }
-    }))
+    .pipe(
+      $.eslint({
+        fix: true,
+        rules: {
+          quotes: ["error", "double"],
+          indent: ["error", 2],
+          semi: ["error", "always"],
+        },
+      }),
+    )
     .pipe(server.reload({ stream: true, once: true }))
     .pipe($.eslint.format())
     .pipe($.if(!server.active, $.eslint.failAfterError()));
@@ -239,25 +241,9 @@ function startTestServer() {
 
 let serve;
 if (isDev) {
-  serve = series(
-    clean, 
-    parallel(
-      styles, 
-      scripts, 
-      fonts
-    ),
-    startDevServer
-  );
+  serve = series(clean, parallel(styles, scripts, fonts), startDevServer);
 } else if (isTest) {
-  serve = series(
-    clean,
-    parallel(
-      styles,
-      scripts,
-      fonts
-    ),
-    startTestServer
-  );
+  serve = series(clean, parallel(styles, scripts, fonts), startTestServer);
 }
 
 const build = series(

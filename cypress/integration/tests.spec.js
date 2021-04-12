@@ -6,11 +6,11 @@ context("Test", () => {
   const url = "/";
   const now = new Date(Date.UTC(2017, 2, 14)).getTime();
 
-  beforeEach(function(){
+  beforeEach(function () {
     cy.clock(now);
     cy.visit(url);
   });
-  
+
   context("by default", () => {
     it("Hours, Minutes and seconds checkboxes should be checked", () => {
       cy.get("#input-show-second").should("be.checked");
@@ -71,5 +71,4 @@ context("Test", () => {
       cy.get("#display-2").should("have.class", "display-no-2-4-10");
     });
   });
-
 });

@@ -10,18 +10,22 @@
   transition-timing-function: ease-in-out;
 }
 
-@function githublogobackgroundcolor($color){
-  @if ($color == "on"){
+@function githublogobackgroundcolor($color) {
+  @if ($color == "on") {
     @return 200;
   } @else {
     @return 50;
   }
 }
 
-@each $hour in ["on", "off"] {
-  @each $minute in ["on", "off"] {
-    @each $second in ["on", "off"] {
-      $background: rgb(githublogobackgroundcolor($hour),githublogobackgroundcolor($minute),githublogobackgroundcolor($second),);
+@each $hour in [ "on", "off" ] {
+  @each $minute in [ "on", "off" ] {
+    @each $second in [ "on", "off" ] {
+      $background: rgb(
+        githublogobackgroundcolor($hour),
+        githublogobackgroundcolor($minute),
+        githublogobackgroundcolor($second)
+      );
       .github-logo-#{$hour}-#{$minute}-#{$second}:hover a svg {
         box-shadow: 0 0 5px 5px $background;
         background-color: $background;

@@ -38,8 +38,8 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 
   &:before {
     position: absolute;
@@ -49,13 +49,13 @@
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
   }
 }
 
 input {
-  &:checked+.slider {
+  &:checked + .slider {
     &.hour {
       background-color: red;
     }
@@ -69,11 +69,11 @@ input {
     }
   }
 
-  &:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+  &:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
   }
 
-  &:checked+.slider:before {
+  &:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

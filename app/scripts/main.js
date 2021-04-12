@@ -19,15 +19,15 @@ function isChecked(checkbox) {
 }
 
 function zeroFilledHour(d) {
-  return zeroFill(d.getHours().toString(), 2)
+  return zeroFill(d.getHours().toString(), 2);
 }
 
 function zeroFilledMinute(d) {
-  return zeroFill(d.getMinutes().toString(), 2)
+  return zeroFill(d.getMinutes().toString(), 2);
 }
 
 function zeroFilledSecond(d) {
-  return zeroFill(d.getSeconds().toString(), 2)
+  return zeroFill(d.getSeconds().toString(), 2);
 }
 
 function hDigit(d, digit) {
@@ -51,7 +51,7 @@ function sDigit(d, digit) {
   return "10";
 }
 
-function inputStatus(id){
+function inputStatus(id) {
   if (isChecked(id)) {
     return "on";
   }
@@ -60,9 +60,13 @@ function inputStatus(id){
 
 function setdisplays() {
   var d = new Date();
-  display1.className.baseVal = digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
-  display2.className.baseVal = digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
-  var statusClass = inputStatus("input-show-hour") + "-" + inputStatus("input-show-minute") + "-" + inputStatus("input-show-second");
+  display1.className.baseVal =
+    digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
+  display2.className.baseVal =
+    digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
+  var statusClass = `${inputStatus("input-show-hour")}-${inputStatus(
+    "input-show-minute",
+  )}-${inputStatus("input-show-second")}`;
   body.className = bodyBaseClass + statusClass;
   githubLogo.className = githubLogoBaseClass + statusClass;
 }

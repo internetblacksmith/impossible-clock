@@ -1,5 +1,5 @@
 /* Grid */
-@media only screen and (max-width:550px) {
+@media only screen and (max-width: 550px) {
   .container {
     grid-template-columns: 40px auto 40px;
     grid-template-rows: 40px 1fr 2fr 1fr 40px;
@@ -27,7 +27,7 @@
   }
 }
 
-@media only screen and (min-width:551px) {
+@media only screen and (min-width: 551px) {
   .container {
     grid-template-columns: 40px auto auto 40px;
     grid-template-rows: 40px 1fr 40px;
