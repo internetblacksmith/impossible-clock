@@ -30,7 +30,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "snyk": "^1.564.0",
+    "snyk": "^1.571.0",
     "start-server-and-test": "^1.12.1"
   },
   "scripts": {
