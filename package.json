@@ -1,13 +1,14 @@
 {
   "private": true,
   "engines": {
-    "node": "13.13.0",
-    "npm": "6.14.4"
+    "node": "15.14.0",
+    "npm": "7.7.6"
   },
   "main": "index.js",
   "dependencies": {
     "@babel/preset-env": "^7.14.1",
     "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
     "autoprefixer": "^10.0.0",
     "browser-sync": "^2.26.14",
     "cross-env": "^7.0.3",
