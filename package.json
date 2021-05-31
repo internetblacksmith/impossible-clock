@@ -6,8 +6,8 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@babel/preset-env": "^7.14.1",
     "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.13.15",
     "autoprefixer": "^10.0.0",
     "browser-sync": "^2.26.14",
     "cross-env": "^7.0.3",
@@ -30,7 +30,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "snyk": "^1.566.0",
+    "snyk": "^1.587.0",
     "start-server-and-test": "^1.12.1"
   },
   "scripts": {
@@ -69,6 +69,6 @@
   "devDependencies": {
     "cypress": "^7.2.0",
     "netlify-plugin-cypress": "^2.2.0",
-    "prettier": "2.2.1"
+    "prettier": "2.3.0"
   }
 }
