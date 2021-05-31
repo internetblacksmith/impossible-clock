@@ -69,6 +69,6 @@
   "devDependencies": {
     "cypress": "^7.2.0",
     "netlify-plugin-cypress": "^2.2.0",
-    "prettier": "2.2.1"
+    "prettier": "2.3.0"
   }
 }
