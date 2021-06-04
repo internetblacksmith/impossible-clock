@@ -32,7 +32,7 @@
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
     "snyk": "^1.620.0",
-    "start-server-and-test": "^1.12.1"
+    "start-server-and-test": "^1.12.4"
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
