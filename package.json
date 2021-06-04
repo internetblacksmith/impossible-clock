@@ -27,7 +27,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-real-favicon": "^0.3.2",
     "gulp-sass": "^4.1.0",
-    "gulp-size": "^4.0.0",
+    "gulp-size": "^4.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
