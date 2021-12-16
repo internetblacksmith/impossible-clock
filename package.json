@@ -31,7 +31,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "snyk": "^1.693.0",
+    "snyk": "^1.793.0",
     "start-server-and-test": "^1.13.1"
   },
   "scripts": {
