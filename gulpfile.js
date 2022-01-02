@@ -1,6 +1,12 @@
 // generated on 2019-03-01 using generator-webapp 4.0.0-2
 const { src, dest, watch, series, parallel, lastRun } = require("gulp");
-const gulpLoadPlugins = require("gulp-load-plugins");
+const $ = require("gulp-load-plugins")({
+  postRequireTransforms: {
+    sass: function (sass) {
+      return sass(require("sass"));
+    },
+  },
+});
 const browserSync = require("browser-sync");
 const del = require("del");
 const autoprefixer = require("autoprefixer");
@@ -12,7 +18,6 @@ const fs = require("fs");
 // File where the favicon markups are stored
 const FAVICON_DATA_FILE = "faviconData.json";
 
-const $ = gulpLoadPlugins();
 const server = browserSync.create();
 
 const isProd = process.env.NODE_ENV === "production";
