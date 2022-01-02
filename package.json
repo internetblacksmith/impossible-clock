@@ -5,11 +5,10 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/preset-env": "^7.14.1",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.14.7",
-    "browser-sync": "^2.27.4",
     "browser-sync": "^2.27.5",
+    "autoprefixer": "^10.3.0",
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.8",
     "del": "^6.0.0",
