@@ -184,18 +184,6 @@ function html() {
     .pipe(dest("dist"));
 }
 
-function images() {
-  return src("app/images/**/*", { since: lastRun(images) })
-    .pipe($.imagemin())
-    .pipe(dest("dist/images"));
-}
-
-function fonts() {
-  return src("app/fonts/**/*.{eot,svg,ttf,woff,woff2}").pipe(
-    $.if(!isProd, dest(".tmp/fonts"), dest("dist/fonts")),
-  );
-}
-
 function extras() {
   return src(["app/*", "!app/*.html"], {
     dot: true,
@@ -222,14 +210,13 @@ function startDevServer() {
     },
   });
 
-  watch(["app/*.html", "app/images/**/*", ".tmp/fonts/**/*"]).on(
+  watch(["app/*.html"]).on(
     "change",
     server.reload,
   );
 
   watch("app/styles/**/*.scss", styles);
   watch("app/scripts/**/*.js", scripts);
-  watch("app/fonts/**/*", fonts);
 }
 
 function startTestServer() {
@@ -249,9 +236,9 @@ function startTestServer() {
 
 let serve;
 if (isDev) {
-  serve = series(clean, parallel(styles, scripts, fonts), startDevServer);
+  serve = series(clean, parallel(styles, scripts), startDevServer);
 } else if (isTest) {
-  serve = series(clean, parallel(styles, scripts, fonts), startTestServer);
+  serve = series(clean, parallel(styles, scripts), startTestServer);
 }
 
 const build = series(
@@ -259,8 +246,6 @@ const build = series(
     lint,
     series(parallel(styles, scripts), html),
     generateFavicon,
-    images,
-    fonts,
     extras,
   ),
   measureSize,
