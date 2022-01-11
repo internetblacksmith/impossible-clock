@@ -6,7 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-env": "^7.16.8",
     "browser-sync": "^2.27.5",
     "autoprefixer": "^10.3.0",
     "cross-env": "^7.0.3",
