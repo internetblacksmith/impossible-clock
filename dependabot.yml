@@ -1,0 +1,12 @@
+# Specify location of manifest files for each package manager
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    # Files stored in repository root
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Add assignees
+    assignees:
+      - "jabawack81"
