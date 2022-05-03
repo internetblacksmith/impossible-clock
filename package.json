@@ -29,8 +29,8 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "postcss": "^8.4.5",
-    "sass": "^1.51.0",
+    "postcss": "^8.4.13",
+    "sass": "^1.50.1",
     "snyk": "^1.912.0",
     "start-server-and-test": "^1.14.0"
   },
