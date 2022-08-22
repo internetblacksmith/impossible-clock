@@ -8318,10 +8318,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-snyk@^1.965.0:
-  version "1.965.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.965.0.tgz#2214a7f4e865f12c5a4819db67ae0f4587b05d7d"
-  integrity sha512-ymkqOhWDqaPYrLBtKTpqdVimyFVJ8XeUxmj70WuiCUX/u6cmg3MXVkZE65LMga2TGcLPf87p7HN90u2uVRyk7A==
+snyk@^1.989.0:
+  version "1.989.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.989.0.tgz#935799ff71ba017793797b73774ee777145c5a01"
+  integrity sha512-PkKqNYogzGo7MUw23IrWEmzQi2cZuWIDCvW/Y3F96tZOv29eC8PzXTj2ebwex4U3rSmK/RpVg1RLMGLcG1rRmw==
 
 socket.io-adapter@~2.3.3:
   version "2.3.3"
