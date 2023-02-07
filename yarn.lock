@@ -8437,10 +8437,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-snyk@^1.997.0:
-  version "1.997.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.997.0.tgz#fabd0f167d35dd80a9a30ab7d62bcbacf1b44cf2"
-  integrity sha512-3Sd7XTOytpud06DMtFGXglxWkpqR1W6QBJIB+T6LcU8f9+cTWmKW8MMgJ6ivsMPF89m49NCSqXjNFDcZbTt/gQ==
+snyk@^1.1097.0:
+  version "1.1097.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1097.0.tgz#a8ea416a6b0f0e873803c82066510f0d84988d87"
+  integrity sha512-Gh4XVEbd+/CYVY7DOXc/5w4D+MrVlb5UzLi7dytr00mhHBOFvMlvPuq+f5BhmXJYH6AoiaAKyL+eys3DZfbVnw==
 
 socket.io-adapter@~2.3.3:
   version "2.3.3"
