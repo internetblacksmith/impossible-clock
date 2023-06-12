@@ -31,7 +31,7 @@
     "gulp-useref": "^5.0.0",
     "postcss": "^8.4.23",
     "sass": "^1.62.1",
-    "snyk": "^1.1100.0",
+    "snyk": "^1.1177.0",
     "start-server-and-test": "^2.0.0"
   },
   "scripts": {
