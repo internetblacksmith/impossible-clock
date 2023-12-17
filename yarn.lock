@@ -2387,7 +2387,7 @@ chainsaw@~0.1.0:
   dependencies:
     traverse ">=0.3.0 <0.4"
 
-chalk@4.1.2, chalk@^4.1.0, chalk@^4.1.1:
+chalk@4.1.2, chalk@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
@@ -4983,7 +4983,7 @@ gulp-match@^1.1.0:
   dependencies:
     minimatch "^3.0.3"
 
-gulp-plugin-extras@^0.2.2:
+gulp-plugin-extras@^0.2.1, gulp-plugin-extras@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/gulp-plugin-extras/-/gulp-plugin-extras-0.2.2.tgz#8f4af2c0acdc95aaac9dcd86e54f200a6e2842c4"
   integrity sha512-0gssXzTNrrOocYBWN4qOZqd03cz3bxhjxVUPZV9iJdBR0ZZbwMQO/OT8hZChYoc9GjKaA5meaqDr6CjkmKA7BA==
@@ -5035,19 +5035,17 @@ gulp-sass@^5.1.0:
     strip-ansi "^6.0.1"
     vinyl-sourcemaps-apply "^0.2.1"
 
-gulp-size@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/gulp-size/-/gulp-size-4.0.1.tgz#018ad1b34bd18bba4c36bcefe2d5fbdbeae73918"
-  integrity sha512-yNf5uGUKe2YAMZwHDFgnkp2o9fLp3WLUMZ+Gd23IIbav0TAVsr5Ek6So8gwjlSimPwR2p05Gg7zsjASYXZtt3g==
+gulp-size@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-size/-/gulp-size-5.0.0.tgz#db78bf0290ca318f7a55abc3321ac4dbbeede9ea"
+  integrity sha512-iyyl9Dd1dHjXJnqxPfA5mZ5kPlaI+FRXklfXrfu/RoP3gHyT1n0IiEAHass5jvBCcBlatSx/JomkpTwnynyhkg==
   dependencies:
     brotli-size "^4.0.0"
-    chalk "^4.1.1"
-    fancy-log "^1.3.3"
-    gzip-size "^6.0.0"
-    plugin-error "^1.0.1"
-    pretty-bytes "^5.6.0"
-    stream-counter "^1.0.0"
-    through2 "^4.0.2"
+    chalk "^5.3.0"
+    fancy-log "^2.0.0"
+    gulp-plugin-extras "^0.2.1"
+    gzip-size "^7.0.0"
+    pretty-bytes "^6.1.1"
 
 gulp-sourcemaps@^3.0.0:
   version "3.0.0"
@@ -5121,10 +5119,10 @@ gulplog@^2.0.0:
   dependencies:
     glogg "^2.0.0"
 
-gzip-size@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-6.0.0.tgz#065367fd50c239c0671cbcbad5be3e2eeb10e462"
-  integrity sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==
+gzip-size@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-7.0.0.tgz#9f9644251f15bc78460fccef4055ae5a5562ac60"
+  integrity sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==
   dependencies:
     duplexer "^0.1.2"
 
@@ -9094,11 +9092,6 @@ stream-combiner@~0.0.4:
   integrity sha1-TV5DPBhSYd3mI8o/RMWGvPXErRQ=
   dependencies:
     duplexer "~0.1.1"
-
-stream-counter@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/stream-counter/-/stream-counter-1.0.0.tgz#91cf2569ce4dc5061febcd7acb26394a5a114751"
-  integrity sha1-kc8lac5NxQYf6816yyY5SloRR1E=
 
 stream-exhaust@^1.0.1:
   version "1.0.2"
