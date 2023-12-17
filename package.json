@@ -7,10 +7,10 @@
   "dependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.5",
-    "browser-sync": "^2.29.1",
+    "browser-sync": "^2.29.3",
     "autoprefixer": "^10.4.14",
     "cross-env": "^7.0.3",
-    "cssnano": "^5.1.14",
+    "cssnano": "^6.0.1",
     "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -29,7 +29,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.27",
     "sass": "^1.62.1",
     "snyk": "^1.1100.0",
     "start-server-and-test": "^2.0.0"
