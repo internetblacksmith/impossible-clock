@@ -1,4 +1,6 @@
 /* Clock */
+@use 'sass:list';
+
 @function digit($digit, $segment) {
   $array: [ [255, 255, 255, 255, 255, 255, 0], [0, 255, 255, 0, 0, 0, 0], [255,
     255, 0, 255, 255, 0, 255], [255, 255, 255, 255, 0, 0, 255], [0, 255, 255, 0,
@@ -6,8 +8,8 @@
     255], [255, 255, 255, 0, 0, 0, 0], [255, 255, 255, 255, 255, 255, 255], [255,
     255, 255, 0, 0, 255, 255], [0, 0, 0, 0, 0, 0, 0] ];
 
-  $digit_array: nth($array, $digit + 1);
-  $element: nth($digit_array, $segment);
+  $digit_array: list.nth($array, $digit + 1);
+  $element: list.nth($digit_array, $segment);
   @return $element;
 }
 

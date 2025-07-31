@@ -8,9 +8,7 @@
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.23.6",
     "browser-sync": "^2.29.3",
-    "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
-    "cssnano": "^6.0.1",
     "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -29,21 +27,19 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
-    "postcss": "^8.4.33",
-    "sass": "^1.62.1",
     "snyk": "^1.1291.1",
     "start-server-and-test": "^2.0.3"
   },
   "scripts": {
-    "serve:test": "cross-env NODE_ENV=test gulp serve",
-    "serve:dev": "cross-env NODE_ENV=dev gulp serve",
-    "build:prod": "cross-env NODE_ENV=prod gulp build",
-    "tasks": "gulp --tasks",
-    "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve:test": "vite --mode test",
     "cy:run": "cypress run",
-    "test": "start-server-and-test 'yarn run serve:test' http://localhost:3000 'yarn run cy:run'",
-    "cy:open": "yarn run cypress open"
+    "test": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run'",
+    "cy:open": "cypress open",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "browserslist": [
     "> 1%",
@@ -68,8 +64,14 @@
   },
   "snyk": true,
   "devDependencies": {
+    "@vitejs/plugin-legacy": "^7.1.0",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.0",
     "cypress": "^13.11.0",
     "netlify-plugin-cypress": "^2.2.1",
-    "prettier": "3.3.0"
+    "postcss": "^8.5.6",
+    "prettier": "3.3.0",
+    "sass": "^1.89.2",
+    "vite": "^7.0.6"
   }
 }

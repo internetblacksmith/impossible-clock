@@ -1,11 +1,11 @@
-var display1 = document.getElementById("display-1");
-var display2 = document.getElementById("display-2");
-var body = document.getElementById("body");
-var githubLogo = document.getElementById("github-logo");
+const display1 = document.getElementById("display-1");
+const display2 = document.getElementById("display-2");
+const body = document.getElementById("body");
+const githubLogo = document.getElementById("github-logo");
 
-var digitBaseClass = "display-no-";
-var bodyBaseClass = "body-";
-var githubLogoBaseClass = "github-logo-";
+const digitBaseClass = "display-no-";
+const bodyBaseClass = "body-";
+const githubLogoBaseClass = "github-logo-";
 
 function zeroFill(string, length) {
   for (var i = 0, l = length - string.length; i < l; i++) {
@@ -59,10 +59,10 @@ function inputStatus(id) {
 }
 
 function setdisplays() {
-  var d = new Date();
+  const d = new Date();
   display1.className.baseVal = digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
   display2.className.baseVal = digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
-  var statusClass = `${inputStatus("input-show-hour")}-${inputStatus("input-show-minute")}-${inputStatus("input-show-second")}`;
+  const statusClass = `${inputStatus("input-show-hour")}-${inputStatus("input-show-minute")}-${inputStatus("input-show-second")}`;
   body.className = bodyBaseClass + statusClass;
   githubLogo.className = githubLogoBaseClass + statusClass;
 }
