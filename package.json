@@ -30,7 +30,7 @@
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^5.0.0",
     "postcss": "^8.4.33",
-    "sass": "^1.62.1",
+    "sass": "^1.89.2",
     "snyk": "^1.1291.1",
     "start-server-and-test": "^2.0.3"
   },
