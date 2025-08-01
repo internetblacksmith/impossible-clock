@@ -9,6 +9,13 @@ export default defineConfig({
     video: false,
     screenshotOnRunFailure: true,
     viewportWidth: 1280,
-    viewportHeight: 720
+    viewportHeight: 720,
+    // Enhanced screenshot settings for visual testing
+    screenshotsFolder: 'cypress/screenshots',
+    trashAssetsBeforeRuns: false, // Keep screenshots for comparison
+    env: {
+      // For visual regression testing
+      failSilently: false
+    }
   }
 });
