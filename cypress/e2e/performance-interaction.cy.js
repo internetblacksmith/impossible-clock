@@ -38,7 +38,7 @@ describe("Performance and Advanced Interaction Tests", () => {
       // Focus first toggle directly
       cy.get("#input-show-hour").focus();
       cy.focused().should("have.id", "input-show-hour");
-      cy.screenshot("keyboard-nav-hour-focused", { capture: "viewport" });
+      // Screenshot removed - not needed for functional tests
       
       // Use space to toggle
       cy.get("#input-show-hour").type(" ");
@@ -50,19 +50,19 @@ describe("Performance and Advanced Interaction Tests", () => {
       // Focus next toggle
       cy.get("#input-show-minute").focus();
       cy.focused().should("have.id", "input-show-minute");
-      cy.screenshot("keyboard-nav-minute-focused", { capture: "viewport" });
+      // Screenshot removed
       
       // Focus last toggle
       cy.get("#input-show-second").focus();
       cy.focused().should("have.id", "input-show-second");
-      cy.screenshot("keyboard-nav-second-focused", { capture: "viewport" });
+      // Screenshot removed
     });
 
     it("should support keyboard interaction with GitHub link", () => {
       // Focus GitHub link
       cy.get("#github-logo a").focus();
       cy.focused().should("have.attr", "href").and("include", "github.com");
-      cy.screenshot("keyboard-nav-github-focused", { capture: "viewport" });
+      // Screenshot removed
     });
   });
 
@@ -83,31 +83,35 @@ describe("Performance and Advanced Interaction Tests", () => {
       // Verify hours are hidden (10 means hidden)
       cy.get("#display-1").invoke("attr", "class").should("match", /display-no-10-\d-\d/);
       
-      cy.screenshot("color-accuracy-dynamic", { capture: "viewport" });
+      // Screenshot removed
     });
 
     it("should handle color transitions smoothly", () => {
       // Capture current state
-      cy.screenshot("color-transition-before", { capture: "viewport" });
+      // Screenshot removed
       
       // Wait for natural clock update
       cy.wait(1500);
-      cy.screenshot("color-transition-after", { capture: "viewport" });
+      // Screenshot removed
     });
   });
 
   describe("cross-browser visual consistency", () => {
     it("should maintain consistent layout", () => {
-      // Verify critical dimensions
-      cy.get("#clock-container svg").should("have.attr", "width", "330");
-      cy.get("#clock-container svg").should("have.attr", "height", "284");
+      // Verify SVG has proper viewBox for responsive scaling
+      cy.get("#clock-container svg").should("have.attr", "viewBox", "-1 -1 20.625 17.75");
+      cy.get("#clock-container svg").should("have.attr", "preserveAspectRatio", "xMidYMid meet");
+      
+      // Verify clock container is responsive
+      cy.get("#clock-container").should("have.css", "width");
+      cy.get("#clock-container svg").should("be.visible");
       
       // Verify switches exist and are visible
       cy.get(".switch").should("have.length", 3);
       cy.get(".switch").should("be.visible");
       
       // Screenshot for manual cross-browser comparison
-      cy.screenshot("cross-browser-layout", { capture: "viewport" });
+      // Screenshot removed
     });
   });
 
@@ -119,10 +123,7 @@ describe("Performance and Advanced Interaction Tests", () => {
       // Capture multiple frames during animation
       for (let i = 0; i < 5; i++) {
         cy.wait(80); // ~400ms total animation time / 5 frames
-        cy.screenshot(`animation-toggle-frame-${i}`, { 
-          capture: "viewport",
-          clip: { x: 850, y: 300, width: 300, height: 200 }
-        });
+        // Screenshot removed - animation frames not needed
       }
     });
   });

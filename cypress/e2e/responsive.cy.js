@@ -24,14 +24,13 @@ describe("Responsive Design Tests", () => {
         
         // Verify clock is visible and centered
         cy.get("#clock-container").should("be.visible");
-        cy.get(".container").should("have.css", "display", "grid");
+        cy.get(".container").should("have.css", "display", "flex");
         
         // Verify switches are properly positioned
         cy.get("#switch").should("be.visible");
         cy.get(".single-switch").should("have.length", 3);
         
-        // Take screenshot
-        cy.screenshot(`responsive-${name}`, { capture: "fullPage" });
+        // Screenshots removed - use visual-regression.cy.js for visual testing
       });
     });
 
@@ -39,11 +38,11 @@ describe("Responsive Design Tests", () => {
       // Start in portrait
       cy.viewport(375, 667);
       cy.visit("/");
-      cy.screenshot("responsive-orientation-portrait", { capture: "viewport" });
+      // Screenshot removed
       
       // Change to landscape
       cy.viewport(667, 375);
-      cy.screenshot("responsive-orientation-landscape", { capture: "viewport" });
+      // Screenshot removed
       
       // Verify layout adapts
       cy.get("#switch .single-switch").should("be.visible");
@@ -65,7 +64,7 @@ describe("Responsive Design Tests", () => {
       
       // Verify clock still works
       cy.get("#clock-container").should("be.visible");
-      cy.screenshot("stress-test-rapid-toggle", { capture: "viewport" });
+      // Screenshot removed
     });
 
     it("should handle very small viewport", () => {
@@ -75,7 +74,7 @@ describe("Responsive Design Tests", () => {
       // Verify nothing breaks
       cy.get("#clock-container").should("be.visible");
       cy.get("#switch").should("be.visible");
-      cy.screenshot("edge-case-small-viewport", { capture: "viewport" });
+      // Screenshot removed
     });
   });
 });

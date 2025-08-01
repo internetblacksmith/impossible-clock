@@ -106,7 +106,7 @@ describe("Clock Accuracy and Edge Cases", () => {
         
         cy.get("#display-1").should("have.class", `display-no-${display1}-0-0`);
         cy.get("#display-2").should("have.class", `display-no-${display2}-0-0`);
-        cy.screenshot(`boundary-hour-${hour}`, { capture: "viewport" });
+        // Screenshot removed - not needed for functional tests
       });
     });
   });
