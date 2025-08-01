@@ -1,0 +1,46 @@
+// CSS Custom Properties for theming
+:root {
+  // Colors
+  --color-hour: #ff0000;
+  --color-minute: #00ff00;
+  --color-second: #0000ff;
+  --color-background-light: rgb(200, 200, 200);
+  --color-background-dark: rgb(50, 50, 50);
+  --color-switch-bg: #ccc;
+  --color-switch-handle: white;
+  --color-switch-container: white;
+  --color-focus: #2196f3;
+  --color-text: #000;
+  
+  // Spacing
+  --spacing-small: 4px;
+  --spacing-base: 5px;
+  --spacing-medium: 10px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 40px;
+  
+  // Animation
+  --transition-duration: 0.4s;
+  --transition-easing: ease-in-out;
+  
+  // Switch dimensions
+  --switch-width: 60px;
+  --switch-height: 34px;
+  --switch-handle-size: 26px;
+  --switch-border-radius: 34px;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-switch-bg: #444;
+    --color-switch-handle: #222;
+    --color-switch-container: #333;
+    --color-text: #fff;
+    
+    // Adjust toggle colors for dark mode
+    --color-hour: #ff6666;
+    --color-minute: #66ff66;
+    --color-second: #6666ff;
+  }
+}

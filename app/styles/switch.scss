@@ -1,89 +1,82 @@
-/* Switches */
+// Modern Toggle Switches
 
 .single-switch {
-  margin-bottom: 24px;
-  background-color: white;
-  padding: 5px;
+  margin-block-end: var(--spacing-large);
+  background-color: var(--color-switch-container);
+  padding: var(--spacing-base);
   border-radius: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-base);
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: var(--switch-width);
+  height: var(--switch-height);
 
   input {
+    position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-    margin: 5px;
+    
+    // Modern focus-visible for better accessibility
+    &:focus-visible + .slider {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 2px;
+    }
   }
 }
 
 .actual-label {
-  margin: 5px;
-  font-family: "Lucida Console", Monaco, monospace;
+  margin: var(--spacing-base);
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
   font-size: 1.2em;
+  font-weight: 600;
+  user-select: none;
+  color: var(--color-text);
 }
 
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-
-  &:before {
+  inset: 0; // Modern replacement for top/right/bottom/left: 0
+  background-color: var(--color-switch-bg);
+  transition: background-color var(--transition-duration) var(--transition-easing);
+  border-radius: var(--switch-border-radius);
+  
+  &::before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-  }
-}
-
-input {
-  &:checked + .slider {
-    &.hour {
-      background-color: red;
-    }
-
-    &.minute {
-      background-color: green;
-    }
-
-    &.second {
-      background-color: blue;
-    }
-  }
-
-  &:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-  }
-
-  &:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-}
-
-.slider.round {
-  border-radius: 34px;
-
-  &:before {
+    height: var(--switch-handle-size);
+    width: var(--switch-handle-size);
+    inset-inline-start: var(--spacing-small);
+    inset-block-end: var(--spacing-small);
+    background-color: var(--color-switch-handle);
+    transition: transform var(--transition-duration) var(--transition-easing);
     border-radius: 50%;
+    will-change: transform; // Optimize for animation
+  }
+}
+
+// Toggle states with CSS custom properties
+input:checked + .slider {
+  &.hour {
+    background-color: var(--color-hour);
+  }
+  
+  &.minute {
+    background-color: var(--color-minute);
+  }
+  
+  &.second {
+    background-color: var(--color-second);
+  }
+  
+  &::before {
+    transform: translateX(var(--switch-handle-size));
   }
 }

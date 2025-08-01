@@ -1,22 +1,24 @@
+@use "variables";
 @use "switch";
 @use "grid";
 @use "clock";
 @use "github";
 
+* {
+  box-sizing: border-box;
+}
+
 body,
 html {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
-.clear {
-  clear: both;
-}
-
+// Remove unused styles
 .display-container {
   position: relative;
-  float: left;
-
+  
   &.display-size-12 {
     width: 122px;
     height: 220px;

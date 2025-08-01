@@ -1,34 +1,57 @@
+// GitHub Logo with modern positioning
 #github-logo {
   position: absolute;
-  margin: 10px;
-  right: 0;
-}
-
-#github-logo a svg {
-  border-radius: 20px;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
-}
-
-@function githublogobackgroundcolor($color) {
-  @if ($color == "on") {
-    @return 200;
-  } @else {
-    @return 50;
+  inset-block-start: var(--spacing-medium);
+  inset-inline-end: var(--spacing-medium);
+  z-index: 10; // Ensure it's above other elements
+  
+  a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    
+    svg {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      transition: all 1s var(--transition-easing);
+      pointer-events: none; // Allow clicks to pass through to the anchor
+      
+      // Set default fill color
+      path {
+        fill: var(--color-text);
+      }
+    }
+    
+    &:hover svg {
+      transform: scale(1.1);
+    }
   }
 }
 
-@each $hour in [ "on", "off" ] {
-  @each $minute in [ "on", "off" ] {
-    @each $second in [ "on", "off" ] {
-      $background: rgb(
-        githublogobackgroundcolor($hour),
-        githublogobackgroundcolor($minute),
-        githublogobackgroundcolor($second)
-      );
-      .github-logo-#{$hour}-#{$minute}-#{$second}:hover a svg {
-        box-shadow: 0 0 5px 5px $background;
-        background-color: $background;
+// Simplified dynamic background using CSS custom properties
+@function logo-color-value($state) {
+  @return if($state == "on", 200, 50);
+}
+
+// Generate classes for logo hover states
+@each $hour in ("on", "off") {
+  @each $minute in ("on", "off") {
+    @each $second in ("on", "off") {
+      .github-logo-#{$hour}-#{$minute}-#{$second} {
+        --logo-r: #{logo-color-value($hour)};
+        --logo-g: #{logo-color-value($minute)};
+        --logo-b: #{logo-color-value($second)};
+        
+        a:hover svg {
+          $color: rgb(var(--logo-r), var(--logo-g), var(--logo-b));
+          box-shadow: 0 0 10px 3px $color;
+          background-color: $color;
+          
+          path {
+            fill: white;
+          }
+        }
       }
     }
   }
