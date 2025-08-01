@@ -13,3 +13,8 @@ Thumbs.db
 # Cypress media files
 /cypress/videos
 /cypress/screenshots
+
+# Visual regression testing
+/cypress-visual-screenshots/comparison/comparison
+/cypress-visual-screenshots/comparison/diff
+/cypress-visual-screenshots/cypress-image-diff-html-report

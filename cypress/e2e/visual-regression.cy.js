@@ -9,12 +9,13 @@ describe("Visual Regression Tests", () => {
   });
 
   describe("clock display states", () => {
-    it("should capture default clock appearance", () => {
+    it("should match default clock appearance", () => {
       cy.get("#clock-container").should("be.visible");
-      cy.screenshot("clock-default-state", { capture: "viewport" });
+      cy.wait(100); // Ensure stable render
+      cy.compareSnapshot("clock-default-state");
     });
 
-    it("should capture clock at specific times", () => {
+    it("should match clock at specific times", () => {
       const times = [
         { hours: 0, minutes: 0, seconds: 0, name: "midnight" },
         { hours: 12, minutes: 0, seconds: 0, name: "noon" },
@@ -26,7 +27,8 @@ describe("Visual Regression Tests", () => {
         const targetTime = new Date(Date.UTC(2017, 2, 14, hours, minutes, seconds)).getTime();
         cy.clock(targetTime);
         cy.visit("/"); // Need to reload page with new time
-        cy.screenshot(`clock-time-${name}`, { capture: "viewport" });
+        cy.wait(100);
+        cy.compareSnapshot(`clock-time-${name}`);
       });
     });
   });
@@ -43,42 +45,66 @@ describe("Visual Regression Tests", () => {
     ];
 
     combinations.forEach(({ hour, minute, second, name }) => {
-      it(`should capture clock with ${name}`, () => {
+      it(`should match clock with ${name}`, () => {
         // Toggle switches as needed
         if (!hour) cy.get("label.switch.hour").first().click();
         if (!minute) cy.get("label.switch.minute").first().click();
         if (!second) cy.get("label.switch.second").first().click();
 
         cy.wait(100); // Allow animation to complete
-        cy.screenshot(`clock-toggles-${name}`, { capture: "viewport" });
+        cy.compareSnapshot(`clock-toggles-${name}`);
       });
     });
   });
 
   describe("interactive states", () => {
-    it("should capture hover state on GitHub logo", () => {
+    it("should match hover state on GitHub logo", () => {
       cy.get("#github-logo a").trigger("mouseover");
-      cy.screenshot("github-logo-hover", { capture: "viewport" });
+      cy.wait(100);
+      cy.compareSnapshot("github-logo-hover");
     });
 
-    it("should capture focused toggle switch", () => {
+    it("should match focused toggle switch", () => {
       cy.get("#input-show-hour").focus();
-      cy.screenshot("toggle-hour-focused", { capture: "viewport" });
+      cy.wait(100);
+      cy.compareSnapshot("toggle-hour-focused");
+    });
+  });
+
+  describe("responsive design visual tests", () => {
+    const viewports = [
+      { name: "mobile", width: 375, height: 667 },
+      { name: "tablet", width: 768, height: 1024 },
+      { name: "desktop", width: 1920, height: 1080 }
+    ];
+
+    viewports.forEach(({ name, width, height }) => {
+      it(`should match appearance on ${name}`, () => {
+        cy.viewport(width, height);
+        cy.wait(100);
+        cy.compareSnapshot(`responsive-${name}`);
+      });
     });
   });
 
   describe("clock segments visual test", () => {
-    it("should verify all digit segments can be displayed", () => {
-      // Test all digits 0-9 are visible correctly
-      for (let digit = 0; digit <= 9; digit++) {
-        const targetTime = new Date(Date.UTC(2017, 2, 14, digit, digit, digit)).getTime();
+    it("should match all digit displays", () => {
+      // Test specific digit combinations
+      const digitTests = [
+        { time: "00:00:00", name: "all-zeros" },
+        { time: "11:11:11", name: "all-ones" },
+        { time: "88:88:88", name: "all-eights" },
+        { time: "12:34:56", name: "sequential" }
+      ];
+
+      digitTests.forEach(({ time, name }) => {
+        const [h, m, s] = time.split(':').map(Number);
+        const targetTime = new Date(Date.UTC(2017, 2, 14, h, m, s)).getTime();
         cy.clock(targetTime);
-        cy.visit("/"); // Reload with new time
-        cy.screenshot(`clock-digit-${digit}`, { 
-          capture: "viewport",
-          clip: { x: 400, y: 200, width: 480, height: 320 }
-        });
-      }
+        cy.visit("/");
+        cy.wait(100);
+        cy.compareSnapshot(`clock-digits-${name}`);
+      });
     });
   });
 });
