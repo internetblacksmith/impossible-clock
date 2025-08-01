@@ -8,7 +8,7 @@
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.23.6",
     "browser-sync": "^2.29.3",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
     "del": "^7.0.0",
