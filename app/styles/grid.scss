@@ -1,27 +1,28 @@
 // Grid Layout with modern CSS Grid
 .container {
-  display: grid;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100vw;
-  gap: 0; // Modern syntax instead of grid-gap
-  place-items: center; // Shorthand for justify-items and align-items
+  padding: 0;
+  box-sizing: border-box;
   contain: layout style; // CSS containment for performance
 }
 
-// Mobile-first approach
-.container {
-  grid-template-columns: var(--spacing-xlarge) 1fr var(--spacing-xlarge);
-  grid-template-rows: var(--spacing-xlarge) 1fr 2fr 1fr var(--spacing-xlarge);
-}
-
 #clock {
-  grid-column: 2;
-  grid-row: 3;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-large);
+  box-sizing: border-box;
 }
 
 #switch {
-  grid-column: 2;
-  grid-row: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--spacing-large) var(--spacing-large);
   
   .single-switch {
     display: inline-flex;
@@ -35,19 +36,24 @@
 }
 
 // Desktop layout
-@media (min-width: 551px) {
+@media (min-width: 768px) {
   .container {
-    grid-template-columns: var(--spacing-xlarge) 1fr auto var(--spacing-xlarge);
-    grid-template-rows: var(--spacing-xlarge) 1fr var(--spacing-xlarge);
+    flex-direction: row;
+    gap: 0;
   }
   
   #clock {
-    grid-row: 2;
+    flex: 1 1 60%;
+    padding: var(--spacing-xlarge);
   }
   
   #switch {
-    grid-column: 3;
-    grid-row: 2;
+    flex: 0 0 40%;
+    flex-direction: column;
+    padding: var(--spacing-xlarge);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
     .single-switch {
       display: flex;
