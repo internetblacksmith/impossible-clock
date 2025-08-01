@@ -1,62 +1,62 @@
-/* Grid */
-@media only screen and (max-width: 550px) {
-  .container {
-    grid-template-columns: 40px auto 40px;
-    grid-template-rows: 40px 1fr 2fr 1fr 40px;
-  }
-
-  #clock {
-    grid-row-start: 3;
-  }
-
-  #switch {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 4;
-    grid-row-end: 5;
-
-    .single-switch {
-      display: inline-flex;
-      margin-right: 24px;
-      margin-bottom: 0;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 551px) {
-  .container {
-    grid-template-columns: 40px auto auto 40px;
-    grid-template-rows: 40px 1fr 40px;
-  }
-
-  #clock {
-    grid-row-start: 2;
-  }
-
-  #switch {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-  }
-}
-
+// Grid Layout with modern CSS Grid
 .container {
   display: grid;
   height: 100vh;
   width: 100vw;
-  grid-column-gap: 0;
-  grid-row-gap: 0;
-  justify-items: center;
-  align-items: center;
+  gap: 0; // Modern syntax instead of grid-gap
+  place-items: center; // Shorthand for justify-items and align-items
+  contain: layout style; // CSS containment for performance
+}
+
+// Mobile-first approach
+.container {
+  grid-template-columns: var(--spacing-xlarge) 1fr var(--spacing-xlarge);
+  grid-template-rows: var(--spacing-xlarge) 1fr 2fr 1fr var(--spacing-xlarge);
 }
 
 #clock {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-end: 3;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#switch {
+  grid-column: 2;
+  grid-row: 4;
+  
+  .single-switch {
+    display: inline-flex;
+    margin-inline-end: var(--spacing-large); // Logical property
+    margin-block-end: 0;
+    
+    &:last-child {
+      margin-inline-end: 0;
+    }
+  }
+}
+
+// Desktop layout
+@media (min-width: 551px) {
+  .container {
+    grid-template-columns: var(--spacing-xlarge) 1fr auto var(--spacing-xlarge);
+    grid-template-rows: var(--spacing-xlarge) 1fr var(--spacing-xlarge);
+  }
+  
+  #clock {
+    grid-row: 2;
+  }
+  
+  #switch {
+    grid-column: 3;
+    grid-row: 2;
+    
+    .single-switch {
+      display: flex;
+      margin-inline-end: 0;
+      margin-block-end: var(--spacing-large);
+      
+      &:last-child {
+        margin-block-end: 0;
+      }
+    }
+  }
 }
