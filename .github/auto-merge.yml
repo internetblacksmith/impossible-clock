@@ -1,0 +1,30 @@
+# Configuration for probot-auto-merge
+# This configures the criteria for auto-merging Dependabot PRs
+
+# Merge method (merge, squash, or rebase)
+mergeMethod: squash
+
+# Minimum number of approvals required
+minApprovals:
+  COLLABORATOR: 0
+  
+# Required labels
+requiredLabels:
+  - automated
+  
+# Blocked labels (PRs with these labels won't be merged)
+blockingLabels:
+  - do-not-merge
+  - work-in-progress
+  
+# Delete branch after merge
+deleteBranchAfterMerge: true
+
+# Rules for automatic merging
+rules:
+  - minApprovals:
+      COLLABORATOR: 0
+    requiredLabels:
+      - dependencies
+    blockingLabels:
+      - major-update
