@@ -46,13 +46,24 @@ npm run preview
 
 ### Testing
 
+The project includes comprehensive test coverage with 53 tests:
+
 ```bash
-# Run all tests
+# Run all tests (includes visual regression)
 npm run test
 
 # Open Cypress test runner
 npm run cy:open
+
+# Run specific test suites
+npm run cy:run -- --spec="cypress/e2e/clock.cy.js"
 ```
+
+#### Test Suites:
+- **Functional Tests**: Clock behavior, toggle functionality, accessibility
+- **Visual Regression**: 21 baseline images comparing visual appearance
+- **Performance Tests**: Load times, smooth animations, keyboard navigation
+- **Responsive Tests**: Mobile, tablet, desktop, and 4K viewports
 
 ## 🛠️ Built With
 
