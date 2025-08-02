@@ -5,7 +5,6 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "snyk": "1.1291.1",
     "start-server-and-test": "2.0.12"
   },
   "scripts": {
@@ -15,9 +14,7 @@
     "serve:test": "vite --mode test",
     "cy:run": "cypress run",
     "test": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run'",
-    "cy:open": "cypress open",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "cy:open": "cypress open"
   },
   "browserslist": [
     "> 1%",
@@ -40,7 +37,6 @@
       ]
     }
   },
-  "snyk": true,
   "devDependencies": {
     "autoprefixer": "10.4.21",
     "cssnano": "7.1.0",
