@@ -50,7 +50,7 @@ jobs:
         
     - name: Commit updated baselines
       if: ${{ github.event.inputs.update_baselines == 'true' }}
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: 'chore: update visual regression baseline images'
         file_pattern: 'cypress-visual-screenshots/comparison/baseline/*'
