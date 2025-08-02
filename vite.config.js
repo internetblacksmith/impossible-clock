@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 
 export default defineConfig({
   root: 'app',
@@ -20,8 +22,8 @@ export default defineConfig({
     },
     postcss: {
       plugins: [
-        require('autoprefixer'),
-        require('cssnano')({
+        autoprefixer(),
+        cssnano({
           preset: 'default'
         })
       ]
