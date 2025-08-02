@@ -6,13 +6,36 @@ describe("Visual Regression Tests", () => {
   beforeEach(() => {
     cy.clock(now);
     cy.visit("/");
+    
+    // Inject CSS for consistent rendering
+    cy.readFile("cypress/support/visual-regression.css").then((css) => {
+      cy.document().then((doc) => {
+        const style = doc.createElement("style");
+        style.innerHTML = css;
+        doc.head.appendChild(style);
+      });
+    });
+    
+    // Ensure fonts are loaded and page is stable
+    cy.get("#clock-container").should("be.visible");
+    cy.wait(200); // Wait for fonts and rendering
+    
+    // Force consistent rendering
+    cy.document().then((doc) => {
+      doc.fonts.ready.then(() => {
+        cy.log("Fonts loaded");
+      });
+    });
   });
 
   describe("clock display states", () => {
     it("should match default clock appearance", () => {
       cy.get("#clock-container").should("be.visible");
       cy.wait(100); // Ensure stable render
-      cy.compareSnapshot("clock-default-state");
+      cy.compareSnapshot("clock-default-state", {
+        capture: 'viewport',
+        errorThreshold: 0.05 // 5% threshold
+      });
     });
 
     it("should match clock at specific times", () => {

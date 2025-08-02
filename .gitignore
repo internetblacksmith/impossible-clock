@@ -18,3 +18,18 @@ Thumbs.db
 /cypress-visual-screenshots/comparison/comparison
 /cypress-visual-screenshots/comparison/diff
 /cypress-visual-screenshots/cypress-image-diff-html-report
+# Keep baseline directories
+!/cypress-visual-screenshots/comparison/baseline/
+!/cypress-visual-screenshots/comparison/baseline-ci/
+
+# Code coverage
+/coverage
+/.nyc_output
+/coverage.lcov
+
+# Additional cypress directories
+/cypress-image-diff-html-report
+/cypress-image-diff-screenshots
+
+# Downloaded artifacts
+/artifacts

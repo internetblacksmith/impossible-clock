@@ -1,0 +1,25 @@
+/* Force consistent rendering for visual regression tests */
+* {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Force specific fonts for consistency */
+html {
+  font-family: "Liberation Sans", "DejaVu Sans", sans-serif !important;
+}
+
+.actual-label {
+  font-family: "Liberation Mono", "DejaVu Sans Mono", monospace !important;
+}
+
+/* Disable animations during tests */
+*,
+*::before,
+*::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}

@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import getCompareSnapshotsPlugin from 'cypress-image-diff-js/plugin';
+import codeCoverageTask from '@cypress/code-coverage/task.js';
 
 export default defineConfig({
   e2e: {
@@ -19,7 +20,16 @@ export default defineConfig({
       failSilently: false
     },
     setupNodeEvents(on, config) {
-      getCompareSnapshotsPlugin(on, config);
+      const imageConfig = getCompareSnapshotsPlugin(on, config);
+      
+      // Code coverage
+      codeCoverageTask(on, config);
+      
+      // Merge image config with our custom config
+      return {
+        ...config,
+        ...imageConfig
+      };
     }
   }
 });

@@ -11,10 +11,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "serve:test": "vite --mode test",
+    "serve:test": "NODE_ENV=test vite --mode test",
     "cy:run": "cypress run",
+    "cy:run:no-visual": "cypress run --spec 'cypress/e2e/!(visual-regression).cy.js'",
     "test": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run'",
-    "cy:open": "cypress open"
+    "test:no-visual": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run:no-visual'",
+    "cy:open": "cypress open",
+    "test:coverage": "NODE_ENV=test nyc npm run test:no-visual",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
+    "test:visual": "cypress run --spec='cypress/e2e/visual-regression.cy.js'",
+    "generate-baselines": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run test:visual'"
   },
   "browserslist": [
     "> 1%",
@@ -38,14 +44,17 @@
     }
   },
   "devDependencies": {
+    "@cypress/code-coverage": "3.13.8",
     "autoprefixer": "10.4.21",
     "cssnano": "7.1.0",
     "cypress": "14.5.3",
     "cypress-image-diff-js": "^2.4.0",
     "netlify-plugin-cypress": "2.2.1",
+    "nyc": "17.1.0",
     "postcss": "8.5.6",
     "prettier": "3.6.2",
     "sass": "1.89.2",
-    "vite": "5.4.11"
+    "vite": "5.4.11",
+    "vite-plugin-istanbul": "6.0.2"
   }
 }

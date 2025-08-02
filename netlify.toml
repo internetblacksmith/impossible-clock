@@ -1,19 +1,14 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  environment = { NODE_VERSION = "20" }
 
 [build.environment]
+  NODE_VERSION = "20.18.1"
+  NPM_FLAGS = "--production=false"
   # Disable telemetry during builds
   NEXT_TELEMETRY_DISABLED = "1"
 
-[[plugins]]
-  package = "netlify-plugin-cypress"
-  [plugins.inputs]
-    record = false
-    spec = "cypress/e2e/clock.cy.js,cypress/e2e/responsive.cy.js"
-    # Skip visual regression in Netlify builds to avoid false positives
-    skip = "cypress/e2e/visual-regression.cy.js"
+# Cypress plugin removed - tests run in GitHub Actions instead
 
 [[headers]]
   for = "/*"

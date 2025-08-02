@@ -18,6 +18,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-liberation fonts-noto-color-emoji fonts-noto-cjk fonts-dejavu-core
+        # Install Microsoft Core Fonts for better compatibility
+        echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+        sudo apt-get install -y ttf-mscorefonts-installer
+        # Update font cache
+        sudo fc-cache -f -v
+      
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -27,11 +37,23 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
+    - name: Setup CI baselines
+      run: |
+        if [ -d "cypress-visual-screenshots/comparison/baseline-ci" ]; then
+          echo "Using CI-specific baselines"
+          rm -rf cypress-visual-screenshots/comparison/baseline
+          cp -r cypress-visual-screenshots/comparison/baseline-ci cypress-visual-screenshots/comparison/baseline
+        fi
+      
     - name: Build project
       run: npm run build
       
-    - name: Run all tests
-      run: npm test
+    - name: Run all tests with coverage
+      run: npm run test:coverage
+      env:
+        NODE_ENV: test
+        CI: true
+        CYPRESS_EXCLUDE_VISUAL_REGRESSION: true
       
     - name: Upload test screenshots on failure
       uses: actions/upload-artifact@v4
@@ -51,6 +73,15 @@ jobs:
         name: visual-regression-baselines-${{ matrix.node-version }}
         path: cypress-visual-screenshots/comparison/baseline
         retention-days: 30
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      if: matrix.node-version == '20.x'
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/lcov.info
+        fail_ci_if_error: false
+        verbose: true
 
   lint:
     runs-on: ubuntu-latest

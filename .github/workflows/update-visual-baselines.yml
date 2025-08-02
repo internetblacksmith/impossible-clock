@@ -1,0 +1,102 @@
+name: Update Visual Regression Baselines
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - update-visual-baselines
+
+jobs:
+  update-baselines:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-liberation fonts-noto-color-emoji fonts-noto-cjk fonts-dejavu-core
+        # Install Microsoft Core Fonts for better compatibility
+        echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+        sudo apt-get install -y ttf-mscorefonts-installer
+        # Update font cache
+        sudo fc-cache -f -v
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      
+    - name: Generate new baselines
+      run: |
+        # Remove old baselines
+        rm -rf cypress-visual-screenshots/comparison/baseline-ci
+        mkdir -p cypress-visual-screenshots/comparison/baseline-ci
+        
+        # Remove existing baseline to force creation of new images
+        rm -rf cypress-visual-screenshots/comparison/baseline
+        mkdir -p cypress-visual-screenshots/comparison/baseline
+        
+        # Run visual regression tests to generate baselines
+        echo "Running visual regression tests to generate baselines..."
+        npm run generate-baselines || true
+        
+        # Copy generated images to baseline-ci
+        echo "Looking for generated images..."
+        
+        # Check comparison directory
+        if [ -d "cypress-visual-screenshots/comparison/comparison" ]; then
+          echo "Found comparison images, copying to baseline-ci..."
+          for file in cypress-visual-screenshots/comparison/comparison/*.png; do
+            if [[ -f "$file" ]]; then
+              echo "Copying: $file"
+              cp "$file" "cypress-visual-screenshots/comparison/baseline-ci/"
+            fi
+          done
+        fi
+        
+        # Also check the baseline directory (images might be created there)
+        if [ -d "cypress-visual-screenshots/comparison/baseline" ]; then
+          echo "Found baseline images, copying to baseline-ci..."
+          for file in cypress-visual-screenshots/comparison/baseline/*.png; do
+            if [[ -f "$file" ]]; then
+              filename=$(basename "$file")
+              if [[ ! -f "cypress-visual-screenshots/comparison/baseline-ci/$filename" ]]; then
+                echo "Copying: $file"
+                cp "$file" "cypress-visual-screenshots/comparison/baseline-ci/"
+              fi
+            fi
+          done
+        fi
+        
+        # If still no images, check cypress screenshots directory
+        if [ -z "$(ls -A cypress-visual-screenshots/comparison/baseline-ci 2>/dev/null)" ]; then
+          echo "No images found in standard locations, checking cypress screenshots..."
+          if [ -d "cypress/screenshots" ]; then
+            find cypress/screenshots -name "*.png" -type f | while read file; do
+              echo "Found screenshot: $file"
+            done
+          fi
+        fi
+        
+    - name: List new baselines
+      run: ls -la cypress-visual-screenshots/comparison/baseline-ci/
+        
+    - name: Commit and push baselines
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add cypress-visual-screenshots/comparison/baseline-ci/
+        git commit -m "chore: update CI visual regression baselines [skip ci]" || echo "No changes to commit"
+        git push

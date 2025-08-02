@@ -1,17 +1,22 @@
 import { defineConfig } from 'vite';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import istanbul from 'vite-plugin-istanbul';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   root: 'app',
+  plugins: [
+    (process.env.NODE_ENV === 'test' || mode === 'test') && istanbul({
+      include: 'scripts/**/*',
+      exclude: ['node_modules', 'cypress'],
+      extension: ['.js'],
+      requireEnv: false,
+      forceBuildInstrument: true
+    })
+  ].filter(Boolean),
   build: {
     outDir: '../dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        main: 'app/index.html'
-      }
-    }
+    emptyOutDir: true
   },
   css: {
     preprocessorOptions: {
@@ -35,4 +40,4 @@ export default defineConfig({
   preview: {
     port: 3000
   }
-});
+}));
