@@ -1,9 +1,9 @@
 {
   "private": true,
+  "type": "module",
   "engines": {
-    "node": "17.3.0"
+    "node": ">=18.0.0"
   },
-  "main": "index.js",
   "dependencies": {
     "snyk": "1.1291.1",
     "start-server-and-test": "2.0.12"
