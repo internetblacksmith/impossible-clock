@@ -57,10 +57,19 @@
 # Deploy preview context
 [context.deploy-preview]
   command = "npm run build"
+  [context.deploy-preview.environment]
+    # Enable Cypress tests for deploy previews
+    CYPRESS_baseUrl = "/"
+    # Add a banner to deploy previews
+    INCOMING_HOOK_TITLE = "Deploy Preview"
+    INCOMING_HOOK_BODY = "A deploy preview for this pull request is ready!"
 
 # Branch deploy context
 [context.branch-deploy]
   command = "npm run build"
+  [context.branch-deploy.environment]
+    # Enable Cypress tests for branch deploys
+    CYPRESS_baseUrl = "/"
 
 # Production context
 [context.production]
