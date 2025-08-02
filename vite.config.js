@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import legacy from '@vitejs/plugin-legacy';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
@@ -29,12 +28,6 @@ export default defineConfig({
       ]
     }
   },
-  plugins: [
-    legacy({
-      targets: ['> 1%', 'last 2 versions', 'not dead'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-    })
-  ],
   server: {
     port: 3000,
     open: true
