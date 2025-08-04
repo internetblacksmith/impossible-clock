@@ -55,6 +55,6 @@
     "prettier": "3.6.2",
     "sass": "1.89.2",
     "vite": "5.4.11",
-    "vite-plugin-istanbul": "6.0.2"
+    "vite-plugin-istanbul": "7.1.0"
   }
 }
