@@ -47,7 +47,7 @@
     "@cypress/code-coverage": "3.14.6",
     "autoprefixer": "10.4.21",
     "cssnano": "7.1.1",
-    "cypress": "14.5.4",
+    "cypress": "15.3.0",
     "cypress-image-diff-js": "^2.4.0",
     "netlify-plugin-cypress": "2.2.1",
     "nyc": "17.1.0",
