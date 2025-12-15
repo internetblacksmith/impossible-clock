@@ -56,7 +56,7 @@ jobs:
         CYPRESS_EXCLUDE_VISUAL_REGRESSION: true
       
     - name: Upload test screenshots on failure
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       if: failure()
       with:
         name: cypress-screenshots-${{ matrix.node-version }}
@@ -67,7 +67,7 @@ jobs:
         retention-days: 7
         
     - name: Upload visual regression baselines
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       if: always()
       with:
         name: visual-regression-baselines-${{ matrix.node-version }}
