@@ -44,7 +44,7 @@
     }
   },
   "devDependencies": {
-    "@cypress/code-coverage": "3.14.7",
+    "@cypress/code-coverage": "4.0.3",
     "autoprefixer": "10.4.27",
     "cssnano": "7.1.4",
     "cypress": "15.13.1",
