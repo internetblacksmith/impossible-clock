@@ -14,27 +14,27 @@ jobs:
     if: |
       github.actor == 'dependabot[bot]' &&
       contains(github.event.pull_request.title, 'security')
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v6
-      
-    - name: Dependabot metadata
-      id: metadata
-      uses: dependabot/fetch-metadata@v3
-      with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        
-    - name: Auto-approve security updates
-      run: gh pr review --approve "$PR_URL"
-      env:
-        PR_URL: ${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Auto-merge security updates
-      run: |
-        echo "Auto-merging security update for ${{ steps.metadata.outputs.dependency-name }}"
-        gh pr merge --auto --squash "$PR_URL"
-      env:
-        PR_URL: ${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Auto-approve security updates
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Auto-merge security updates
+        run: |
+          echo "Auto-merging security update for ${{ steps.metadata.outputs.dependency-name }}"
+          gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

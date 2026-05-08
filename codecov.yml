@@ -7,7 +7,7 @@ coverage:
   precision: 2
   round: down
   range: "70...100"
-  
+
   status:
     project:
       default:
@@ -15,7 +15,7 @@ coverage:
         threshold: 1%
         paths:
           - "app/"
-        
+
     patch:
       default:
         target: auto

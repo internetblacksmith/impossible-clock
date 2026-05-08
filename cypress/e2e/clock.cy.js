@@ -86,14 +86,14 @@ describe("Impossible Clock", () => {
   describe("accessibility", () => {
     it("should have proper labels for toggle switches", () => {
       cy.get('label[for="input-show-hours"]').should("contain.text", "H");
-      cy.get('label[for="input-show-minute"]').should("contain.text", "M"); 
+      cy.get('label[for="input-show-minute"]').should("contain.text", "M");
       cy.get('label[for="input-show-second"]').should("contain.text", "S");
     });
 
     it("should have focusable toggle elements", () => {
       // Toggle inputs are hidden (opacity: 0) but should still be focusable
       cy.get("#input-show-hour").should("exist").focus();
-      cy.get("#input-show-minute").should("exist").focus(); 
+      cy.get("#input-show-minute").should("exist").focus();
       cy.get("#input-show-second").should("exist").focus();
     });
   });

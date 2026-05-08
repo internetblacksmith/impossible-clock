@@ -17,8 +17,8 @@ Try to understand it if you dare ;)
 
 ### Prerequisites
 
-- Node.js 17.3.0 or higher
-- npm or yarn
+- Node.js 24.x or higher (development pinned to 25.9.0 via `.nvmrc`)
+- npm
 
 ### Installation
 
@@ -60,6 +60,7 @@ npm run cy:run -- --spec="cypress/e2e/clock.cy.js"
 ```
 
 #### Test Suites:
+
 - **Functional Tests**: Clock behavior, toggle functionality, accessibility
 - **Visual Regression**: 21 baseline images comparing visual appearance
 - **Performance Tests**: Load times, smooth animations, keyboard navigation
@@ -75,6 +76,7 @@ npm run cy:run -- --spec="cypress/e2e/clock.cy.js"
 ## 📱 Browser Support
 
 The clock works on all modern browsers and includes legacy support through polyfills:
+
 - Chrome, Firefox, Safari, Edge (latest 2 versions)
 - Mobile browsers
 - Firefox ESR

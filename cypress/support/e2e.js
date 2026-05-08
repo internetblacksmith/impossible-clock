@@ -17,8 +17,8 @@
 import "./commands";
 
 // Import cypress-image-diff
-import compareSnapshotCommand from 'cypress-image-diff-js/command';
+import compareSnapshotCommand from "cypress-image-diff-js/command";
 compareSnapshotCommand();
 
 // Import code coverage support
-import '@cypress/code-coverage/support';
+import "@cypress/code-coverage/support";

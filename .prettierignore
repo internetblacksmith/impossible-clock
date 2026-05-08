@@ -1,2 +1,12 @@
-# Ignore artifacts:
+# Build artifacts and generated files
 .tmp
+dist
+coverage
+.nyc_output
+node_modules
+
+# Lockfiles
+package-lock.json
+
+# Visual regression baseline/comparison images and metadata
+cypress-visual-screenshots

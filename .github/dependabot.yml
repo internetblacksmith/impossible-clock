@@ -17,7 +17,7 @@ updates:
         update-types:
           - "minor"
           - "patch"
-      # Group all non-major production dependency updates  
+      # Group all non-major production dependency updates
       prod-dependencies:
         dependency-type: "production"
         update-types:
@@ -30,7 +30,7 @@ updates:
     labels:
       - "dependencies"
       - "automated"
-      
+
   # GitHub Actions
   - package-ecosystem: github-actions
     directory: "/"

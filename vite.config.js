@@ -1,43 +1,44 @@
-import { defineConfig } from 'vite';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-import istanbul from 'vite-plugin-istanbul';
+import { defineConfig } from "vite";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import istanbul from "vite-plugin-istanbul";
 
 export default defineConfig(({ mode }) => ({
-  root: 'app',
+  root: "app",
   plugins: [
-    (process.env.NODE_ENV === 'test' || mode === 'test') && istanbul({
-      include: 'scripts/**/*',
-      exclude: ['node_modules', 'cypress'],
-      extension: ['.js'],
-      requireEnv: false,
-      forceBuildInstrument: true
-    })
+    (process.env.NODE_ENV === "test" || mode === "test") &&
+      istanbul({
+        include: "scripts/**/*",
+        exclude: ["node_modules", "cypress"],
+        extension: [".js"],
+        requireEnv: false,
+        forceBuildInstrument: true,
+      }),
   ].filter(Boolean),
   build: {
-    outDir: '../dist',
-    emptyOutDir: true
+    outDir: "../dist",
+    emptyOutDir: true,
   },
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler'
-      }
+        api: "modern-compiler",
+      },
     },
     postcss: {
       plugins: [
         autoprefixer(),
         cssnano({
-          preset: 'default'
-        })
-      ]
-    }
+          preset: "default",
+        }),
+      ],
+    },
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
   },
   preview: {
-    port: 3000
-  }
+    port: 3000,
+  },
 }));

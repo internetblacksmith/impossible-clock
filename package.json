@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "dependencies": {
     "start-server-and-test": "3.0.2"
@@ -17,6 +17,8 @@
     "test": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run'",
     "test:no-visual": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run:no-visual'",
     "cy:open": "cypress open",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
     "test:coverage": "NODE_ENV=test nyc npm run test:no-visual",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
     "test:visual": "cypress run --spec='cypress/e2e/visual-regression.cy.js'",
@@ -27,29 +29,12 @@
     "last 2 versions",
     "Firefox ESR"
   ],
-  "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module"
-    },
-    "env": {
-      "es6": true,
-      "node": true,
-      "browser": true
-    },
-    "rules": {
-      "indent": [
-        "error",
-        2
-      ]
-    }
-  },
   "devDependencies": {
     "@cypress/code-coverage": "4.0.3",
     "autoprefixer": "10.5.0",
     "cssnano": "7.1.8",
     "cypress": "15.14.2",
-    "cypress-image-diff-js": "^2.8.0",
-    "netlify-plugin-cypress": "2.2.1",
+    "cypress-image-diff-js": "2.8.0",
     "nyc": "18.0.0",
     "postcss": "8.5.13",
     "prettier": "3.8.3",

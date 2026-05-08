@@ -1,8 +1,6 @@
 {
   "all": true,
-  "include": [
-    "app/scripts/**/*.js"
-  ],
+  "include": ["app/scripts/**/*.js"],
   "exclude": [
     "**/*.spec.js",
     "**/*.test.js",
@@ -11,11 +9,7 @@
     "cypress/**",
     "vite.config.js"
   ],
-  "reporter": [
-    "text",
-    "lcov",
-    "html"
-  ],
+  "reporter": ["text", "lcov", "html"],
   "check-coverage": true,
   "branches": 80,
   "lines": 80,

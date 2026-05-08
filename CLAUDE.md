@@ -49,6 +49,7 @@ npm run cy:open
 ## Build System Details
 
 **Modern Vite-based build system** with:
+
 - **Fast Development**: Hot Module Replacement (HMR) and instant server start
 - **SCSS Processing**: Built-in Sass support with PostCSS (Autoprefixer, CSSnano)
 - **JavaScript**: ES modules with legacy browser support via Rollup
@@ -58,6 +59,7 @@ npm run cy:open
 ## Testing
 
 Cypress tests verify:
+
 - Default checkbox states (all time components enabled)
 - Proper digit display updates every second
 - Toggle functionality for hiding/showing hours, minutes, or seconds

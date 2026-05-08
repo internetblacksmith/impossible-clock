@@ -7,16 +7,16 @@ mergeMethod: squash
 # Minimum number of approvals required
 minApprovals:
   COLLABORATOR: 0
-  
+
 # Required labels
 requiredLabels:
   - automated
-  
+
 # Blocked labels (PRs with these labels won't be merged)
 blockingLabels:
   - do-not-merge
   - work-in-progress
-  
+
 # Delete branch after merge
 deleteBranchAfterMerge: true
 

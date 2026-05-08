@@ -16,6 +16,7 @@ To ensure tests work across different environments (local development on macOS/W
 ## Configuration
 
 Settings in `cypress-image-diff.config.js`:
+
 - Threshold: 5% for cross-platform compatibility
 - Retry attempts: 2 times if comparison fails
 - Anti-aliasing: Ignored in comparisons
@@ -24,19 +25,25 @@ Settings in `cypress-image-diff.config.js`:
 ## Running Tests
 
 ### Local Testing
+
 Run all tests including visual regression:
+
 ```bash
 npm test
 ```
 
 ### CI Testing
+
 Visual regression tests run automatically in CI with the same command:
+
 ```bash
 npm test
 ```
 
 ### Manual Visual Regression Testing
+
 A separate workflow can be triggered manually:
+
 1. Go to Actions → Visual Regression workflow
 2. Click "Run workflow"
 3. Optionally check "Update baseline images" to update baselines from CI
@@ -44,6 +51,7 @@ A separate workflow can be triggered manually:
 ## Handling Failures
 
 If visual regression tests fail:
+
 1. Download artifacts from the GitHub Actions run
 2. Review the diff images to determine if changes are intentional
 3. If changes are intentional, update baseline images locally or via the manual workflow

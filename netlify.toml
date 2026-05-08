@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20.18.1"
+  NODE_VERSION = "25.9.0"
   NPM_FLAGS = "--production=false"
   # Disable telemetry during builds
   NEXT_TELEMETRY_DISABLED = "1"

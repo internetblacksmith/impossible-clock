@@ -32,6 +32,7 @@ This will generate coverage reports in the `coverage/` directory.
 ## Coverage Thresholds
 
 The project is configured with the following coverage thresholds:
+
 - Overall project: Auto-detected baseline with 1% threshold
 - Patch coverage: Auto-detected baseline with 1% threshold
 - Target coverage: 80% for branches, lines, functions, and statements
@@ -39,6 +40,7 @@ The project is configured with the following coverage thresholds:
 ## Ignored Files
 
 The following are excluded from coverage:
+
 - `node_modules/`
 - `dist/`
 - `cypress/`

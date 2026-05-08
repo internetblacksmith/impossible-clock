@@ -6,22 +6,22 @@ describe("Visual Regression Tests", () => {
   beforeEach(() => {
     cy.clock(now);
     cy.visit("/");
-    
+
     // Inject CSS for consistent rendering
-    cy.readFile("cypress/support/visual-regression.css").then((css) => {
-      cy.document().then((doc) => {
+    cy.readFile("cypress/support/visual-regression.css").then(css => {
+      cy.document().then(doc => {
         const style = doc.createElement("style");
         style.innerHTML = css;
         doc.head.appendChild(style);
       });
     });
-    
+
     // Ensure fonts are loaded and page is stable
     cy.get("#clock-container").should("be.visible");
     cy.wait(200); // Wait for fonts and rendering
-    
+
     // Force consistent rendering
-    cy.document().then((doc) => {
+    cy.document().then(doc => {
       doc.fonts.ready.then(() => {
         cy.log("Fonts loaded");
       });
@@ -33,8 +33,8 @@ describe("Visual Regression Tests", () => {
       cy.get("#clock-container").should("be.visible");
       cy.wait(100); // Ensure stable render
       cy.compareSnapshot("clock-default-state", {
-        capture: 'viewport',
-        errorThreshold: 0.05 // 5% threshold
+        capture: "viewport",
+        errorThreshold: 0.05, // 5% threshold
       });
     });
 
@@ -43,11 +43,13 @@ describe("Visual Regression Tests", () => {
         { hours: 0, minutes: 0, seconds: 0, name: "midnight" },
         { hours: 12, minutes: 0, seconds: 0, name: "noon" },
         { hours: 23, minutes: 59, seconds: 59, name: "end-of-day" },
-        { hours: 8, minutes: 8, seconds: 8, name: "all-eights" }
+        { hours: 8, minutes: 8, seconds: 8, name: "all-eights" },
       ];
 
       times.forEach(({ hours, minutes, seconds, name }) => {
-        const targetTime = new Date(Date.UTC(2017, 2, 14, hours, minutes, seconds)).getTime();
+        const targetTime = new Date(
+          Date.UTC(2017, 2, 14, hours, minutes, seconds),
+        ).getTime();
         cy.clock(targetTime);
         cy.visit("/"); // Need to reload page with new time
         cy.wait(100);
@@ -64,7 +66,7 @@ describe("Visual Regression Tests", () => {
       { hour: false, minute: false, second: true, name: "only-seconds" },
       { hour: false, minute: true, second: false, name: "only-minutes" },
       { hour: true, minute: false, second: false, name: "only-hours" },
-      { hour: false, minute: false, second: false, name: "all-hidden" }
+      { hour: false, minute: false, second: false, name: "all-hidden" },
     ];
 
     combinations.forEach(({ hour, minute, second, name }) => {
@@ -98,7 +100,7 @@ describe("Visual Regression Tests", () => {
     const viewports = [
       { name: "mobile", width: 375, height: 667 },
       { name: "tablet", width: 768, height: 1024 },
-      { name: "desktop", width: 1920, height: 1080 }
+      { name: "desktop", width: 1920, height: 1080 },
     ];
 
     viewports.forEach(({ name, width, height }) => {
@@ -117,11 +119,11 @@ describe("Visual Regression Tests", () => {
         { time: "00:00:00", name: "all-zeros" },
         { time: "11:11:11", name: "all-ones" },
         { time: "88:88:88", name: "all-eights" },
-        { time: "12:34:56", name: "sequential" }
+        { time: "12:34:56", name: "sequential" },
       ];
 
       digitTests.forEach(({ time, name }) => {
-        const [h, m, s] = time.split(':').map(Number);
+        const [h, m, s] = time.split(":").map(Number);
         const targetTime = new Date(Date.UTC(2017, 2, 14, h, m, s)).getTime();
         cy.clock(targetTime);
         cy.visit("/");

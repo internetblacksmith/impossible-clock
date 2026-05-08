@@ -22,7 +22,7 @@
     opacity: 0;
     width: 0;
     height: 0;
-    
+
     // Modern focus-visible for better accessibility
     &:focus-visible + .slider {
       outline: 2px solid var(--color-focus);
@@ -33,7 +33,9 @@
 
 .actual-label {
   margin: var(--spacing-base);
-  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-family:
+    ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono",
+    "DejaVu Sans Mono", monospace;
   font-size: 1.2em;
   font-weight: 600;
   user-select: none;
@@ -45,9 +47,10 @@
   cursor: pointer;
   inset: 0; // Modern replacement for top/right/bottom/left: 0
   background-color: var(--color-switch-bg);
-  transition: background-color var(--transition-duration) var(--transition-easing);
+  transition: background-color var(--transition-duration)
+    var(--transition-easing);
   border-radius: var(--switch-border-radius);
-  
+
   &::before {
     position: absolute;
     content: "";
@@ -67,15 +70,15 @@ input:checked + .slider {
   &.hour {
     background-color: var(--color-hour);
   }
-  
+
   &.minute {
     background-color: var(--color-minute);
   }
-  
+
   &.second {
     background-color: var(--color-second);
   }
-  
+
   &::before {
     transform: translateX(var(--switch-handle-size));
   }
