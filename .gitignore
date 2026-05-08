@@ -33,3 +33,4 @@ Thumbs.db
 
 # Downloaded artifacts
 /artifacts
+.netlify/
