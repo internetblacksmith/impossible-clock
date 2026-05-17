@@ -1,102 +1,87 @@
 # The Impossible Clock
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/69b0dcaa-051c-42a9-96b2-a4dc35d966af/deploy-status)](https://app.netlify.com/sites/impossible-clock/deploys)
-[![impossible-clock](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/rckh63/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/rckh63/runs)
+[![CI](https://github.com/internetblacksmith/impossible-clock/actions/workflows/ci.yml/badge.svg)](https://github.com/internetblacksmith/impossible-clock/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/internetblacksmith/impossible-clock/branch/main/graph/badge.svg)](https://codecov.io/gh/internetblacksmith/impossible-clock)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 
-Try to understand it if you dare ;)
+Live at **<https://ic.internetblacksmith.dev>**.
 
-## 🎯 Features
+A digital clock displayed on seven-segment SVG displays — with the twist that each of the H / M / S components has its own toggle switch. Hide any combination and try to read what's left. Try to understand it if you dare ;)
 
-- Interactive digital clock with seven-segment displays
-- Toggle switches for hours, minutes, and seconds
-- Responsive design that works on all devices
-- Automatic dark mode support
-- Smooth animations and transitions
+## Features
 
-## 🚀 Getting Started
+- Seven-segment SVG displays driven entirely by CSS class state
+- Independent toggle switches for hours, minutes, and seconds
+- Responsive layout from mobile up to 4K
+- Zero runtime dependencies — vanilla ES modules, no framework
 
-### Prerequisites
-
-- Node.js 24.x or higher (development pinned to 25.9.0 via `.nvmrc`)
-- npm
-
-### Installation
+## Getting Started
 
 ```bash
-# Clone the repository
 git clone https://github.com/internetblacksmith/impossible-clock.git
 cd impossible-clock
-
-# Install dependencies
 npm install
 ```
 
-### Development
+Requires Node `>=24.0.0` (development is pinned to `25.9.0` via `.nvmrc` / `.node-version`).
+
+## Develop
 
 ```bash
-# Start development server with hot reload
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev             # Vite dev server on http://localhost:3000
+npm run build           # Production build into dist/
+npm run preview         # Serve dist/ for inspection
 ```
 
-### Testing
-
-The project includes comprehensive test coverage with 53 tests:
+## Test
 
 ```bash
-# Run all tests (includes visual regression)
-npm run test
-
-# Open Cypress test runner
-npm run cy:open
-
-# Run specific test suites
-npm run cy:run -- --spec="cypress/e2e/clock.cy.js"
+npm run test:unit       # Vitest — pure helpers (fast)
+npm run test            # Cypress E2E + visual regression
+npm run test:no-visual  # Cypress E2E without visual diff
+npm run test:coverage   # E2E with code coverage via nyc
+npm run cy:open         # Open Cypress interactive runner
 ```
 
-#### Test Suites:
+Test layers:
 
-- **Functional Tests**: Clock behavior, toggle functionality, accessibility
-- **Visual Regression**: 21 baseline images comparing visual appearance
-- **Performance Tests**: Load times, smooth animations, keyboard navigation
-- **Responsive Tests**: Mobile, tablet, desktop, and 4K viewports
+- **Unit** ([Vitest](https://vitest.dev/)) — the pure digit/status helpers in `app/scripts/clock.js`
+- **E2E** ([Cypress](https://www.cypress.io/)) — clock accuracy, toggle behaviour, performance, responsive layout
+- **Visual regression** (cypress-image-diff-js) — pixel comparison of the rendered seven-segment displays against baselines committed under `cypress-visual-screenshots/`
 
-## 🛠️ Built With
+## Lint & Format
 
-- **Vite** - Lightning fast build tool
-- **SCSS** - For styling with modern CSS features
-- **Cypress** - For end-to-end testing
-- **Vanilla JavaScript** - No frameworks needed!
+```bash
+npm run lint            # ESLint
+npm run format          # Prettier --write
+npm run format:check    # Prettier --check
+```
 
-## 📱 Browser Support
+ESLint (flat config) handles code quality, Prettier handles formatting — separated so they don't fight.
 
-The clock works on all modern browsers and includes legacy support through polyfills:
+## Built With
 
-- Chrome, Firefox, Safari, Edge (latest 2 versions)
-- Mobile browsers
-- Firefox ESR
+- [Vite](https://vitejs.dev/) — build & dev server
+- [Lightning CSS](https://lightningcss.dev/) — Rust-based CSS transformer + minifier (replaces the old PostCSS/autoprefixer/cssnano trio)
+- [SCSS](https://sass-lang.com/) — styling
+- [Vitest](https://vitest.dev/) — unit tests
+- [Cypress](https://www.cypress.io/) — E2E and visual regression
+- [ESLint](https://eslint.org/) 9 + [Prettier](https://prettier.io/) — code quality & formatting
+- Vanilla ES modules — no framework
 
-## 🎨 Customization
+## Browser Support
 
-The clock uses CSS custom properties for easy theming. Colors, spacing, and animations can be customized in `app/styles/variables.scss`.
+Modern evergreen browsers (last two versions of Chrome / Firefox / Safari / Edge) plus Firefox ESR, driven by the `browserslist` block in `package.json`. No transpilation to ES5 and no polyfills are shipped — the build target is `es2020`.
 
-## 🌐 Deployment
+## Deployment
 
-The project is configured for easy deployment to Netlify. Simply connect your GitHub repository and Netlify will automatically build and deploy your changes.
+Deployed to Netlify on every push to `main`. Build config lives in [`netlify.toml`](netlify.toml) — that's the source of truth for the build command, Node version, security headers, and cache rules. The dashboard's legacy `build_settings.env` API is intentionally unused.
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+MIT — see [LICENSE.md](LICENSE.md).
 
 ---
 
-**Remember**: The clock's behavior is intentionally mysterious. Can you figure out how to read it? 🕐✨
+**Remember**: the clock's behaviour is intentionally mysterious. Can you figure out how to read it? 🕐
