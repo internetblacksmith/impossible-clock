@@ -1,6 +1,4 @@
 import { defineConfig } from "vite";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
 import istanbul from "vite-plugin-istanbul";
 
 export default defineConfig(({ mode }) => ({
@@ -18,20 +16,16 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    // Lightning CSS minifier (Rust, no PostCSS toolchain needed). It reads
+    // the browserslist from package.json for vendor prefixing.
+    cssMinify: "lightningcss",
   },
   css: {
+    transformer: "lightningcss",
     preprocessorOptions: {
       scss: {
         api: "modern-compiler",
       },
-    },
-    postcss: {
-      plugins: [
-        autoprefixer(),
-        cssnano({
-          preset: "default",
-        }),
-      ],
     },
   },
   server: {
