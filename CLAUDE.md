@@ -4,65 +4,64 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The Impossible Clock is a creative web-based digital clock that displays time using seven-segment displays. The "impossible" aspect comes from the ability to toggle individual time components (hours, minutes, seconds) on/off, creating unusual time display combinations.
+The Impossible Clock is a creative web-based digital clock that displays time using seven-segment SVG displays. The "impossible" angle: each time component (hours, minutes, seconds) has its own toggle switch, so you can hide any combination and watch the remaining digits march on in isolation.
 
-## Architecture
+## Stack
 
-- **Frontend**: Vanilla JavaScript, SCSS, HTML
-- **Build System**: Gulp-based workflow with Babel, Sass compilation, and asset optimization
-- **Testing**: Cypress for end-to-end testing
-- **Deployment**: Static site ready for Netlify deployment
+- **Frontend**: vanilla ES modules + SCSS, no framework
+- **Build**: [Vite](https://vitejs.dev/) (root `app/`, output `dist/`)
+- **Unit tests**: [Vitest](https://vitest.dev/) for pure helpers in `app/scripts/clock.js`
+- **E2E + visual regression**: [Cypress](https://www.cypress.io/) with [cypress-image-diff-js](https://github.com/kien-ht/cypress-image-diff-js)
+- **Coverage**: `nyc` (via istanbul-instrumented build) + Codecov
+- **Lint / format**: ESLint 9 (flat config) + Prettier (Prettier owns formatting, ESLint owns code quality)
+- **Hosting**: Netlify, configured by `netlify.toml`
 
-### Key Components
+## Layout
 
-- `app/index.html`: Main HTML with embedded SVG seven-segment displays
-- `app/scripts/main.js`: Core clock logic with digit manipulation and toggle controls
-- `app/styles/`: SCSS modules for styling (clock, switches, grid, GitHub logo)
-- `gulpfile.js`: Complete build pipeline with development server, linting, and production builds
+- `app/index.html` — single entry, includes the embedded SVG seven-segment displays and the H/M/S toggle switches.
+- `app/scripts/clock.js` — pure helpers (`zeroPad`, `digit`, `status`, `statusClass`, `HIDDEN_DIGIT`). No DOM imports — these are what Vitest exercises.
+- `app/scripts/main.js` — thin bootstrap. Looks up DOM nodes, reads the checkboxes, calls `digit()` per position, sets `class` attributes once per second via `setInterval`. Uses `setAttribute("class", …)` so the same code path covers HTML body and SVG display elements.
+- `app/styles/*.scss` — SCSS modules (`clock`, `switch`, `grid`, `github`, `variables`) composed in `main.scss`.
+- `test/clock.test.js` — Vitest unit tests for the pure helpers.
+- `cypress/e2e/*.cy.js` — Cypress specs: clock accuracy, toggle behaviour, responsive layout, performance/interaction, visual-regression.
+- `vite.config.js` — single config for Vite (build), the dev server, and Vitest (`test` block, node environment).
+- `eslint.config.mjs` — flat config; separate sections for browser scripts, Node-side configs, and Cypress globals.
 
-### Clock Logic
+### Clock encoding (worth knowing before editing the JS or CSS)
 
-The clock uses a unique digit encoding system where each display element gets CSS classes like `display-no-X-Y-Z` where X, Y, Z represent hour, minute, and second digits respectively. When a time component is disabled, it uses "10" as a special value to hide those segments.
+Each digit position renders via CSS classes like `display-no-X-Y-Z`, where X is a single hour digit, Y a single minute digit, Z a single second digit. When a time component is disabled, that slot uses the special string `"10"` — the CSS interprets it as "no segments lit". `HIDDEN_DIGIT` in `clock.js` is that exact string; don't change the value unless you're also rewriting the SCSS, and the test in `clock.test.js` pins this contract.
 
-## Development Commands
+The body and the GitHub logo also get class names like `body-on-off-on` / `github-logo-on-off-on` to drive layout/colour changes when components are toggled.
+
+## Common Commands
 
 ```bash
-# Development server with hot reload
-npm run dev
+npm run dev             # Vite dev server on http://localhost:3000
+npm run build           # Production build into dist/
+npm run preview         # Serve dist/ for inspection
 
-# Production build
-npm run build
+npm run test:unit       # Vitest (pure helpers, headless, fast)
+npm run test            # Cypress E2E + visual regression (slow)
+npm run test:no-visual  # Cypress E2E without visual diff
+npm run test:coverage   # E2E with code coverage via nyc
 
-# Preview production build
-npm run preview
-
-# Test server (for Cypress)
-npm run serve:test
-
-# Run all tests
-npm run test
-
-# Open Cypress test runner
-npm run cy:open
+npm run lint            # ESLint
+npm run lint:fix        # ESLint --fix
+npm run format          # Prettier --write
+npm run format:check    # Prettier --check
 ```
 
-## Build System Details
+## CI
 
-**Modern Vite-based build system** with:
+`.github/workflows/ci.yml`:
 
-- **Fast Development**: Hot Module Replacement (HMR) and instant server start
-- **SCSS Processing**: Built-in Sass support with PostCSS (Autoprefixer, CSSnano)
-- **JavaScript**: ES modules with legacy browser support via Rollup
-- **Assets**: Automatic optimization and code splitting
-- **Development**: Vite dev server on port 3000 with instant updates
+- `test` job runs on a matrix of Node 24.x and 25.x, runs `test:unit` + `test:coverage`, uploads screenshots/baselines as artifacts on failure, pushes coverage to Codecov on the 24.x run.
+- `lint` job runs Prettier (`format:check`) and ESLint (`lint`).
+- Visual-regression baselines have CI-specific copies under `cypress-visual-screenshots/comparison/baseline-ci/` to avoid host-dependent rendering differences.
 
-## Testing
+## Critical Rules
 
-Cypress tests verify:
-
-- Default checkbox states (all time components enabled)
-- Proper digit display updates every second
-- Toggle functionality for hiding/showing hours, minutes, or seconds
-- CSS class changes when time components are disabled
-
-Tests use a fixed date (March 14, 2017) and time manipulation via `cy.tick()` for predictable assertions.
+- Keep `app/scripts/clock.js` pure (no `document`, `window`, or `setInterval`). All side-effects belong in `main.js`. Tests then live in `test/` without needing jsdom.
+- The `HIDDEN_DIGIT = "10"` value is part of the CSS contract — don't change one without the other, and don't drop the test that pins the literal.
+- Visual-regression baselines are sensitive to font hinting and subpixel rendering. The `.actual-label` H/M/S text is masked in `cypress-image-diff.config.js` to keep baselines stable across hosts; preserve that mask if you touch the visual-regression config.
+- Netlify config lives in `netlify.toml` (build command, env, security headers, caching). Don't migrate any of it back to the deprecated dashboard `build_settings.env` API.

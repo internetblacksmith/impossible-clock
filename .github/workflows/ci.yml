@@ -48,7 +48,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Run all tests with coverage
+      - name: Run unit tests (Vitest)
+        run: npm run test:unit
+
+      - name: Run E2E tests with coverage (Cypress)
         run: npm run test:coverage
         env:
           NODE_ENV: test
@@ -99,5 +102,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check code formatting
+      - name: Check code formatting (Prettier)
+        run: npm run format:check
+
+      - name: Lint (ESLint)
         run: npm run lint

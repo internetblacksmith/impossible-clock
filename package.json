@@ -1,11 +1,10 @@
 {
+  "name": "impossible-clock",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=24.0.0"
-  },
-  "dependencies": {
-    "start-server-and-test": "3.0.4"
   },
   "scripts": {
     "dev": "vite",
@@ -14,15 +13,19 @@
     "serve:test": "NODE_ENV=test vite --mode test",
     "cy:run": "cypress run",
     "cy:run:no-visual": "cypress run --spec 'cypress/e2e/!(visual-regression).cy.js'",
+    "cy:open": "cypress open",
     "test": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run'",
     "test:no-visual": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run cy:run:no-visual'",
-    "cy:open": "cypress open",
-    "lint": "prettier --check .",
-    "format": "prettier --write .",
-    "test:coverage": "NODE_ENV=test nyc npm run test:no-visual",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
     "test:visual": "cypress run --spec='cypress/e2e/visual-regression.cy.js'",
-    "generate-baselines": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run test:visual'"
+    "test:coverage": "NODE_ENV=test nyc npm run test:no-visual",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
+    "generate-baselines": "start-server-and-test 'npm run serve:test' http://localhost:3000 'npm run test:visual'",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "browserslist": [
     "> 1%",
@@ -31,15 +34,20 @@
   ],
   "devDependencies": {
     "@cypress/code-coverage": "4.0.3",
+    "@eslint/js": "10.0.1",
     "autoprefixer": "10.5.0",
     "cssnano": "8.0.1",
     "cypress": "15.14.2",
     "cypress-image-diff-js": "2.8.0",
+    "eslint": "10.4.0",
+    "globals": "17.6.0",
     "nyc": "18.0.0",
     "postcss": "8.5.14",
     "prettier": "3.8.3",
     "sass": "1.99.0",
+    "start-server-and-test": "3.0.4",
     "vite": "8.0.11",
-    "vite-plugin-istanbul": "8.0.0"
+    "vite-plugin-istanbul": "8.0.0",
+    "vitest": "4.1.6"
   }
 }

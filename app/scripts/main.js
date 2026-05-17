@@ -1,72 +1,43 @@
+import { digit, statusClass } from "./clock.js";
+
 const display1 = document.getElementById("display-1");
 const display2 = document.getElementById("display-2");
 const body = document.getElementById("body");
 const githubLogo = document.getElementById("github-logo");
 
-const digitBaseClass = "display-no-";
-const bodyBaseClass = "body-";
-const githubLogoBaseClass = "github-logo-";
+const hourCheckbox = document.getElementById("input-show-hour");
+const minuteCheckbox = document.getElementById("input-show-minute");
+const secondCheckbox = document.getElementById("input-show-second");
 
-function zeroFill(string, length) {
-  for (var i = 0, l = length - string.length; i < l; i++) {
-    string = "0" + string;
-  }
-  return string;
+const hours = d => d.getHours();
+const minutes = d => d.getMinutes();
+const seconds = d => d.getSeconds();
+
+// setAttribute("class", ...) works uniformly for HTML and SVG elements,
+// replacing the older `el.className.baseVal = ...` SVG-only API.
+function setClass(el, value) {
+  el.setAttribute("class", value);
 }
 
-function isChecked(checkbox) {
-  return document.getElementById(checkbox).checked;
-}
-
-function zeroFilledHour(d) {
-  return zeroFill(d.getHours().toString(), 2);
-}
-
-function zeroFilledMinute(d) {
-  return zeroFill(d.getMinutes().toString(), 2);
-}
-
-function zeroFilledSecond(d) {
-  return zeroFill(d.getSeconds().toString(), 2);
-}
-
-function hDigit(d, digit) {
-  if (isChecked("input-show-hour")) {
-    return zeroFilledHour(d)[digit];
-  }
-  return "10";
-}
-
-function mDigit(d, digit) {
-  if (isChecked("input-show-minute")) {
-    return zeroFilledMinute(d)[digit];
-  }
-  return "10";
-}
-
-function sDigit(d, digit) {
-  if (isChecked("input-show-second")) {
-    return zeroFilledSecond(d)[digit];
-  }
-  return "10";
-}
-
-function inputStatus(id) {
-  if (isChecked(id)) {
-    return "on";
-  }
-  return "off";
-}
-
-function setdisplays() {
+function tick() {
   const d = new Date();
-  display1.className.baseVal =
-    digitBaseClass + hDigit(d, 0) + "-" + mDigit(d, 0) + "-" + sDigit(d, 0);
-  display2.className.baseVal =
-    digitBaseClass + hDigit(d, 1) + "-" + mDigit(d, 1) + "-" + sDigit(d, 1);
-  const statusClass = `${inputStatus("input-show-hour")}-${inputStatus("input-show-minute")}-${inputStatus("input-show-second")}`;
-  body.className = bodyBaseClass + statusClass;
-  githubLogo.className = githubLogoBaseClass + statusClass;
+  const h = hourCheckbox.checked;
+  const m = minuteCheckbox.checked;
+  const s = secondCheckbox.checked;
+
+  setClass(
+    display1,
+    `display-no-${digit(d, hours, 0, h)}-${digit(d, minutes, 0, m)}-${digit(d, seconds, 0, s)}`,
+  );
+  setClass(
+    display2,
+    `display-no-${digit(d, hours, 1, h)}-${digit(d, minutes, 1, m)}-${digit(d, seconds, 1, s)}`,
+  );
+
+  const status = statusClass(h, m, s);
+  setClass(body, `body-${status}`);
+  setClass(githubLogo, `github-logo-${status}`);
 }
-setInterval(setdisplays, 1000);
-setdisplays();
+
+tick();
+setInterval(tick, 1000);
