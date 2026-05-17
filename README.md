@@ -24,7 +24,7 @@ cd impossible-clock
 npm install
 ```
 
-Requires Node `>=24.0.0` (development is pinned to `25.9.0` via `.nvmrc` / `.node-version`).
+Requires Node `>=24.0.0` (development is pinned to `24.14.0` via `.nvmrc` / `.node-version` — current LTS).
 
 ## Develop
 

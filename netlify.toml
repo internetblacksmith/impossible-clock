@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "25.9.0"
+  NODE_VERSION = "24.14.0"
   NPM_FLAGS = "--include=dev"
 
 # Cypress plugin removed - tests run in GitHub Actions instead
