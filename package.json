@@ -35,17 +35,17 @@
   "devDependencies": {
     "@cypress/code-coverage": "4.0.3",
     "@eslint/js": "10.0.1",
-    "cypress": "15.20.1",
+    "cypress": "15.21.0",
     "cypress-image-diff-js": "2.8.0",
     "eslint": "10.8.1",
     "globals": "17.11.0",
     "lightningcss": "1.33.0",
     "nyc": "18.0.0",
     "prettier": "3.9.6",
-    "sass": "1.102.0",
+    "sass": "1.103.1",
     "start-server-and-test": "3.0.12",
-    "vite": "8.2.1",
+    "vite": "8.2.2",
     "vite-plugin-istanbul": "8.0.0",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   }
 }
