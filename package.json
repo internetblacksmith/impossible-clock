@@ -38,13 +38,13 @@
     "cypress": "15.21.1",
     "cypress-image-diff-js": "2.8.0",
     "eslint": "10.11.0",
-    "globals": "17.12.0",
+    "globals": "17.13.0",
     "lightningcss": "1.33.0",
     "nyc": "18.0.0",
     "prettier": "3.9.9",
-    "sass": "1.105.0",
+    "sass": "1.105.1",
     "start-server-and-test": "3.0.12",
-    "vite": "8.3.1",
+    "vite": "8.3.2",
     "vite-plugin-istanbul": "8.0.0",
     "vitest": "4.1.11"
   }
