@@ -33,7 +33,7 @@
     "Firefox ESR"
   ],
   "devDependencies": {
-    "@cypress/code-coverage": "4.0.3",
+    "@cypress/code-coverage": "4.1.2",
     "@eslint/js": "10.0.1",
     "cypress": "15.21.1",
     "cypress-image-diff-js": "2.8.0",
@@ -42,7 +42,7 @@
     "lightningcss": "1.33.0",
     "nyc": "18.0.0",
     "prettier": "3.9.10",
-    "sass": "1.106.1",
+    "sass": "1.107.0",
     "start-server-and-test": "3.0.13",
     "vite": "8.3.5",
     "vite-plugin-istanbul": "8.0.0",
